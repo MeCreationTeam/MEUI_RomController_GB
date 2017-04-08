@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+	android:title="关于">
+<Preference
+	android:layout="@layout/about_header">
+	<intent
+		android:action="android.intent.action.VIEW"
+		android:data="http://tieba.baidu.com/p/4937312217"/>
+</Preference>
+<PreferenceCategory
+	android:title="开源相关" />
+<Preference
+	android:title="SeekBar Preference">
+	<intent
+		android:action="android.intent.action.VIEW"
+		android:data="http://android.hlidskialf.com/blog/code/android-seekbar-preference"/>
+</Preference>
+	<Preference
+		android:title="Materialish Progress">
+		<intent
+			android:action="android.intent.action.VIEW"
+			android:data="https://github.com/pnikosis/materialish-progress"/>
+	</Preference>
+
+	<Preference
+		android:title="RippleDrawable">
+		<intent
+			android:action="android.intent.action.VIEW"
+			android:data="https://github.com/ozodrukh/RippleDrawable"/>
+	</Preference>
+
+	<Preference
+		android:title="Android Support Libraries">
+		<intent
+			android:action="android.intent.action.VIEW"
+			android:data="https://github.com/android/platform_frameworks_support"/>
+	</Preference>
+
+	<Preference
+		android:title="Preference Fragment">
+		<intent
+			android:action="android.intent.action.VIEW"
+			android:data="https://github.com/aliceharrison/android-support-v4-preferencefragment"/>
+	</Preference>
+	<Preference
+		android:title="ColorPicker Preference">
+		<intent
+			android:action="android.intent.action.VIEW"
+			android:data="https://github.com/attenzione/android-ColorPickerPreference"/>
+	</Preference>
+	<Preference
+		android:title="AmLich Lunar">
+		<intent
+			android:action="android.intent.action.VIEW"
+			android:data="https://github.com/Hongarc/Lunar"/>
+	</Preference>
+	
+	<!-- 
+		-->
+</PreferenceScreen>

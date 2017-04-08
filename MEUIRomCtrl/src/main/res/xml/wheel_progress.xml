@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+ android:title="Material Design圆形进度条">
+
+    <CheckBoxPreference
+		android:title="显示环形进度条"
+		android:key="mdhp_quick"
+		android:defaultValue="true"/>
+
+    <CheckBoxPreference
+		android:title="启用绘制缓存"
+		android:key="mdhp_cache"
+		android:defaultValue="false"/>
+	<net.margaritov.preference.colorpicker.ColorPickerPreference
+        android:key="mdhp_barColor"
+        android:title="圆环颜色"
+        android:defaultValue="0xFF009688"    
+        alphaSlider="true"                              
+    />
+	<!-- integer resources are also accepted --><!-- enable alpha slider via XML -->
+
+	<com.meui.RomCtrl.SeekBarPreference
+		android:title="圆环半径"
+		android:key="mdhp_circleRadius"
+		android:defaultValue="48"
+		android:max="60"
+		android:dialogMessage="  默认:48"
+	 	android:summary="圆环半径必须大于两倍圆环填充宽度！"/>
+	<com.meui.RomCtrl.SeekBarPreference
+		android:title="圆环填充宽度"
+		android:key="mdhp_barWidth"
+		android:defaultValue="4"
+		android:max="15"
+		android:dialogMessage="  默认:4"
+		android:summary="圆环半径必须大于两倍圆环填充宽度！"/>
+	<net.margaritov.preference.colorpicker.ColorPickerPreference
+        android:key="mdhp_rimColor"
+        android:title="底环颜色"
+        android:defaultValue="0x00FFFFFF"    
+        alphaSlider="true"                              
+    />
+	<com.meui.RomCtrl.SeekBarPreference
+		android:title="底环宽度"
+		android:key="mdhp_rimWidth"
+		android:defaultValue="4"
+		android:dialogMessage="	 默认:4"
+		android:max="15"/>
+	<CheckBoxPreference
+		android:key="mdhp_fillRadius"
+		android:title="填满半径"
+		android:summary="强制圆环缩放"
+		android:defaultValue="false"/>
+	<com.meui.RomCtrl.SeekBarPreference
+		android:key="mdhp_cycleTime"
+		android:title="周期时间"
+		android:defaultValue="460"
+		android:dialogMessage="默认:460"
+		android:max="920"/>
+	<com.meui.RomCtrl.SeekBarPreference
+	    android:title="旋转基准速度"
+		android:key="mdhp_baseSpinSpeed"
+        android:defaultValue="639"
+		android:dialogMessage="默认:639"
+		android:max="1250"/>
+	
+</PreferenceScreen>

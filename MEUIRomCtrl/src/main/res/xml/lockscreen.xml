@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+	android:title="锁屏设置">
+	<CheckBoxPreference
+		android:title="显示农历"
+		android:key="show_lslunar"
+		android:defaultValue="false"/>
+	
+</PreferenceScreen>
+
