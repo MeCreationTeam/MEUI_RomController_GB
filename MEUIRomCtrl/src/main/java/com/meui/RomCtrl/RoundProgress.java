@@ -8,6 +8,7 @@ import java.util.*;
 import android.provider.*;
 import android.widget.*;
 import android.util.*;
+import com.meui.RomCtrl.R;
 
 public class RoundProgress extends PreferenceActivity{
 	@Override
@@ -38,11 +39,8 @@ public class RoundProgress extends PreferenceActivity{
 		
 		final ContentResolver CR=getContentResolver();
 		SharedPreferences meui= getSharedPreferences("com.meui.RomCtrl_preferences",Context.MODE_WORLD_READABLE);
-		//Settings.System.putInt(CR,"custom_date_format", Integer.valueOf( meui.getString("custom_date_format","4")));
-	    final Map<String,?> mdhp=meui.getAll();
+		final Map<String,?> mdhp=meui.getAll();
 		for(Map.Entry<String, ?>  entry :mdhp.entrySet()){
-			//Toast.makeText(this,entry.toString(),Toast.LENGTH_LONG);
-			//Preference now=findPreference(entry.getKey());
 			
 			switch(entry.getKey().toString()){
 				case "mdhp_circleRadius":
@@ -50,8 +48,6 @@ public class RoundProgress extends PreferenceActivity{
 				case "mdhp_rimWidth":
 				case "mdhp_barColor":
 				case "mdhp_rimColor":
-				//case "custom_date_format":
-					//Toast.makeText(this,"AAA",Toast.LENGTH_LONG).show();
 					
 					Settings.System.putInt(CR,entry.getKey().toString(),Integer.valueOf( entry.getValue())/* meui.getInt(entry.getKey(),28)*/);
 				break;
@@ -61,7 +57,7 @@ public class RoundProgress extends PreferenceActivity{
 				case "mdhp_cycleTime":
 					Settings.System.putString(CR,entry.getKey(),entry.getValue().toString());
 				break;
-				case "mdhp_fillRadius":
+				//case "mdhp_fillRadius":
 				case "mdhp_linear":
 				case "mdhp_quick":
 				case "mdhp_cache":
