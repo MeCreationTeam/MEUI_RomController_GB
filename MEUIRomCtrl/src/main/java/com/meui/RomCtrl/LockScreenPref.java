@@ -9,6 +9,10 @@ import android.widget.*;
 
 public class LockScreenPref extends PreferenceActivity
 {
+	/**
+	 * This is used to control something in lockscreen.
+	 * @author zhaozihanzzh
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
