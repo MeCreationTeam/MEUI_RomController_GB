@@ -5,7 +5,7 @@
 	android:layout="@layout/about_header">
 	<intent
 		android:action="android.intent.action.VIEW"
-		android:data="http://tieba.baidu.com/p/4937312217"/>
+		android:data="https://github.com/MeCreationTeam/MEUI_RomController_GB"/>
 </Preference>
 <PreferenceCategory
 	android:title="开源相关" />

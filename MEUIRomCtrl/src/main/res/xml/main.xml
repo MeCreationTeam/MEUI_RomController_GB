@@ -1,20 +1,20 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
 	android:title="MEUI ROM">
-<PreferenceScreen
-	android:title="截图">
-	<intent
-		android:targetPackage="com.meui.RomCtrl"
-		android:action="android.intent.action.MAIN"
-		android:targetClass="com.meui.RomCtrl.SSPref"/>
-</PreferenceScreen>
-<PreferenceScreen
-	android:title="ME圆形进度条">
-<intent
-	android:targetPackage="com.meui.RomCtrl"
-	android:action="android.intent.action.MAIN"
-	android:targetClass="com.meui.RomCtrl.RoundProgress"/>
-</PreferenceScreen>
-<PreferenceScreen
+	<PreferenceScreen
+		android:title="截图">
+		<intent
+			android:targetPackage="com.meui.RomCtrl"
+			android:action="android.intent.action.MAIN"
+			android:targetClass="com.meui.RomCtrl.SSPref"/>
+	</PreferenceScreen>
+	<PreferenceScreen
+		android:title="ME圆形进度条">
+		<intent
+			android:targetPackage="com.meui.RomCtrl"
+			android:action="android.intent.action.MAIN"
+			android:targetClass="com.meui.RomCtrl.RoundProgress"/>
+	</PreferenceScreen>
+	<PreferenceScreen
 		android:title="锁屏">
 		<intent
 			android:targetPackage="com.meui.RomCtrl"
@@ -28,7 +28,4 @@
 			android:action="android.intent.action.MAIN"
 			android:targetClass="com.meui.RomCtrl.About"/>
 	</PreferenceScreen>
-	
 </PreferenceScreen>
-	
-   
