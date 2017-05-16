@@ -29,21 +29,9 @@
 			android:data="https://github.com/ozodrukh/RippleDrawable"/>
 	</Preference>
 
+	
 	<Preference
-		android:title="Android Support Libraries">
-		<intent
-			android:action="android.intent.action.VIEW"
-			android:data="https://github.com/android/platform_frameworks_support"/>
-	</Preference>
-
-	<Preference
-		android:title="Preference Fragment">
-		<intent
-			android:action="android.intent.action.VIEW"
-			android:data="https://github.com/aliceharrison/android-support-v4-preferencefragment"/>
-	</Preference>
-	<Preference
-		android:title="ColorPicker Preference">
+		android:title="ColorPickerPreference">
 		<intent
 			android:action="android.intent.action.VIEW"
 			android:data="https://github.com/attenzione/android-ColorPickerPreference"/>
