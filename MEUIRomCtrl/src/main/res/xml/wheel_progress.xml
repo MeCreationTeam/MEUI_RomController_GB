@@ -19,19 +19,19 @@
     />
 	<!-- integer resources are also accepted --><!-- enable alpha slider via XML -->
 
-	<com.meui.RomCtrl.SeekBarPreference
+	<com.meui.prefs.SeekBarPreference
 		android:title="圆环半径"
 		android:key="mdhp_circleRadius"
 		android:defaultValue="48"
 		android:max="60"
-		android:dialogMessage="  默认:48"
+		android:dialogMessage="默认:48"
 	 	android:summary="仅当控件大小为wrap_content时生效！"/>
-	<com.meui.RomCtrl.SeekBarPreference
+	<com.meui.prefs.SeekBarPreference
 		android:title="圆环填充宽度"
 		android:key="mdhp_barWidth"
 		android:defaultValue="4"
 		android:max="15"
-		android:dialogMessage="  默认:4"
+		android:dialogMessage="默认:4"
 		android:summary="圆环半径必须大于两倍圆环填充宽度！"/>
 	<net.margaritov.preference.colorpicker.ColorPickerPreference
         android:key="mdhp_rimColor"
@@ -39,24 +39,24 @@
         android:defaultValue="0x00FFFFFF"    
         alphaSlider="true"                              
     />
-	<com.meui.RomCtrl.SeekBarPreference
+	<com.meui.prefs.SeekBarPreference
 		android:title="底环宽度"
 		android:key="mdhp_rimWidth"
 		android:defaultValue="4"
-		android:dialogMessage="	 默认:4"
+		android:dialogMessage="默认:4"
 		android:max="15"/>
 	<!--CheckBoxPreference
 		android:key="mdhp_fillRadius"
 		android:title="填满半径"
 		android:summary="强制圆环缩放"
 		android:defaultValue="false"/-->
-	<com.meui.RomCtrl.SeekBarPreference
+	<com.meui.prefs.SeekBarPreference
 		android:key="mdhp_cycleTime"
 		android:title="周期时间"
 		android:defaultValue="460"
 		android:dialogMessage="默认:460"
 		android:max="920"/>
-	<com.meui.RomCtrl.SeekBarPreference
+	<com.meui.prefs.SeekBarPreference
 	    android:title="旋转基准速度"
 		android:key="mdhp_baseSpinSpeed"
         android:defaultValue="639"

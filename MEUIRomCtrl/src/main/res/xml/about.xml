@@ -7,6 +7,9 @@
 		android:action="android.intent.action.VIEW"
 		android:data="https://github.com/MeCreationTeam/MEUI_RomController_GB"/>
 </Preference>
+<Preference
+	android:title="更新日志"
+	android:key="changelogs"/>
 <PreferenceCategory
 	android:title="开源相关" />
 <Preference

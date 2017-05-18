@@ -7,12 +7,12 @@
 	<CheckBoxPreference
 		android:title="截图后弹出分享菜单"
 		android:key="share_screenshot"/>
-	<com.meui.RomCtrl.SeekBarPreference
+	<com.meui.prefs.SeekBarPreference
 		android:title="截图质量"
 		android:key="screenshot_quality"
 		android:defaultValue="100"
 		android:max="100"
-		android:dialogMessage="  选择截图文件保存的质量,默认:100"/>
+		android:dialogMessage="选择截图文件保存的质量,默认:100"/>
 	<ListPreference
 		android:title="截图格式"
 		android:key="screenshot_format"
@@ -21,10 +21,10 @@
 		android:defaultValue="png"
 		android:entries="@array/screenshot_format"/>
 
-	<com.meui.RomCtrl.SeekBarPreference
+	<com.meui.prefs.SeekBarPreference
 		android:title="截图延时"
 		android:key="screenshot_delay"
 		android:defaultValue="1"
 		android:max="15"
-		android:dialogMessage="  从启动截图程序到实际截取屏幕间的等待时间\n默认:1"/>
+		android:dialogMessage="从启动截图程序到实际截取屏幕间的等待时间\n默认:1"/>
 </PreferenceScreen>
