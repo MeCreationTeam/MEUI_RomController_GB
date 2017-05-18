@@ -39,7 +39,7 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
 		LinearLayout.LayoutParams params;
 		LinearLayout layout = new LinearLayout(mContext);
 		layout.setOrientation(LinearLayout.VERTICAL);
-		layout.setPadding(6,6,6,6);
+		layout.setPadding(48,8,48,8);
 
 		mSplashText = new TextView(mContext);
 		if (mDialogMessage != null)
