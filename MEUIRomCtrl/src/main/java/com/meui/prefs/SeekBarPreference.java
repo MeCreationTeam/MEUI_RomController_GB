@@ -11,6 +11,7 @@ import android.preference.*;
 import android.util.*;
 import android.view.*;
 import android.widget.*;
+import android.os.*;
 
 
 public class SeekBarPreference extends DialogPreference implements SeekBar.OnSeekBarChangeListener
@@ -36,10 +37,11 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
 	}
 	@Override 
 	protected View onCreateDialogView() {
+		final int paddingSide=Build.VERSION.SDK_INT>20 ? 48 : 6;
 		LinearLayout.LayoutParams params;
 		LinearLayout layout = new LinearLayout(mContext);
 		layout.setOrientation(LinearLayout.VERTICAL);
-		layout.setPadding(48,8,48,8);
+		layout.setPadding(paddingSide,8,paddingSide,8);
 
 		mSplashText = new TextView(mContext);
 		if (mDialogMessage != null)
