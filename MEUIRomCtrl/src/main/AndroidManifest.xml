@@ -7,8 +7,7 @@
         android:allowBackup="true"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-		android:configChanges="fontScale"
-		>
+		android:configChanges="fontScale">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
@@ -20,32 +19,18 @@
         </activity>
         <activity
             android:name=".SSPref"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
+            android:label="@string/app_name"/>
 		<activity
             android:name=".About"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
+            android:label="@string/app_name"/>
 		<activity
             android:name=".RoundProgress"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
+            android:label="@string/app_name"/>
 		<activity
-			android:name=".LockScreenPref"
-			
-			/>
-		
+			android:name=".LockScreenPref"/>
     </application>
 	
-<uses-permission android:name="android.permission.WRITE_SETTINGS"/>
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+	<uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 </manifest>
