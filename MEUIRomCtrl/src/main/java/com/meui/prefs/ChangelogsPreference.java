@@ -7,6 +7,7 @@ import android.util.*;
 import android.widget.*;
 import java.io.*;
 import java.net.*;
+import android.os.*;
 
 public class ChangelogsPreference extends DialogPreference
 {
@@ -20,10 +21,7 @@ public class ChangelogsPreference extends DialogPreference
 	private Context context;
 	private AlertDialog mDialog;
 	private TextView mText;
-	public ChangelogsPreference(Context c){
-		super(c);
-		context=c;
-	}
+	
 	public ChangelogsPreference(Context c,AttributeSet attrs){
 		super(c,attrs);
 		context=c;
@@ -38,6 +36,8 @@ public class ChangelogsPreference extends DialogPreference
 	{
 		mText=new TextView(context);
 		mText.setText(mChangelog);
+		final int padding=Build.VERSION.SDK_INT>20 ? 48: 6;
+		mText.setPadding(padding,8,padding-6,8);
 		try
 		{
 		final int VERSION=context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
