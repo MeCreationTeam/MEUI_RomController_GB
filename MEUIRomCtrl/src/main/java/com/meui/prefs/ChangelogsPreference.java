@@ -37,7 +37,7 @@ public class ChangelogsPreference extends DialogPreference
 		mText=new TextView(context);
 		mText.setText(mChangelog);
 		final int padding=Build.VERSION.SDK_INT>20 ? 48: 6;
-		mText.setPadding(padding,8,padding-6,8);
+		mText.setPadding(padding,8,padding-6,0);
 		try
 		{
 		final int VERSION=context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
