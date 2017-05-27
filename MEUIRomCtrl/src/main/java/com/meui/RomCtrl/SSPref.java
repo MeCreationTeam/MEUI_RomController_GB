@@ -5,13 +5,14 @@ import android.preference.*;
 import java.io.*;
 import android.widget.*;
 
+/**
+ * This is used to control MEUI CMScreenshot.
+ * @see <a href="https://github.com/zhaozihanzzh/MEUI_GingerBread_CMScreenshot">MEUI CM Screenshot</a>
+ * @author zhaozihanzzh
+ */
+
 public class SSPref extends PreferenceActivity
 {
-	/**
-	 * This is used to control MEUI CMScreenshot.
-	 * @see <a href="https://github.com/zhaozihanzzh/MEUI_GingerBread_CMScreenshot">MEUI CM Screenshot</a>
-	 * @author zhaozihanzzh
-	 */
     private CheckBoxPreference shareSS;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -37,7 +38,8 @@ public class SSPref extends PreferenceActivity
 					}
 					String newPath=Environment.getExternalStorageDirectory().toString() + "/" + (String)newValue;
 					try
-					{File newPathFile=new File(newPath);
+					{
+						File newPathFile=new File(newPath);
 						if (!newPathFile.exists()) newPathFile.mkdirs();
 						result = true;
 						newPathFile = null;
@@ -51,7 +53,7 @@ public class SSPref extends PreferenceActivity
 
 					return result;
 					//return true才会把新值保存起来
-				}});
+				}
+			});
 	}
 }
-

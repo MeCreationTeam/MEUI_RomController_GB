@@ -1,14 +1,14 @@
 package com.meui.RomCtrl;
-
 import android.content.*;
 import android.os.*;
 import android.preference.*;
 
+/**
+ * The main activity for MEUIRomCtrl.
+ */
+
 public class MainActivity extends PreferenceActivity 
 {
-	/**
-	 * The main activity for MEUIRomCtrl.
-	 */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

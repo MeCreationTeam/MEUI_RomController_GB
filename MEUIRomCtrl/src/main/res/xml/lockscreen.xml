@@ -3,8 +3,19 @@
 	android:title="锁屏设置">
 	<CheckBoxPreference
 		android:title="显示农历"
-		android:key="show_lslunar"
+		android:key="ls_lunar"
 		android:defaultValue="false"/>
+	<net.margaritov.preference.colorpicker.ColorPickerPreference
+        android:key="ls_lunar_color"
+        android:title="农历颜色"
+        android:defaultValue="0xFFFFFFFF"    
+        alphaSlider="true"/>
+	<com.meui.prefs.SeekBarPreference
+		android:title="农历字号"
+		android:key="ls_lunar_size"
+		android:defaultValue="18"
+		android:max="25"
+		android:dialogMessage="默认:18"/>
 	
 </PreferenceScreen>
 

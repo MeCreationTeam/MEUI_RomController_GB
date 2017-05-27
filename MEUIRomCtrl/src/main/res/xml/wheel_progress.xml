@@ -15,10 +15,8 @@
         android:key="mdhp_barColor"
         android:title="圆环颜色"
         android:defaultValue="0xFF009688"    
-        alphaSlider="true"                              
-    />
-	<!-- integer resources are also accepted --><!-- enable alpha slider via XML -->
-
+        alphaSlider="true"/>
+	
 	<com.meui.prefs.SeekBarPreference
 		android:title="圆环半径"
 		android:key="mdhp_circleRadius"
@@ -37,8 +35,7 @@
         android:key="mdhp_rimColor"
         android:title="底环颜色"
         android:defaultValue="0x00FFFFFF"    
-        alphaSlider="true"                              
-    />
+        alphaSlider="true"/>
 	<com.meui.prefs.SeekBarPreference
 		android:title="底环宽度"
 		android:key="mdhp_rimWidth"

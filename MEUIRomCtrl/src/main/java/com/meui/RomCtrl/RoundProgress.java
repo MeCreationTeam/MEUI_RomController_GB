@@ -9,39 +9,22 @@ import android.provider.*;
 import android.widget.*;
 import android.util.*;
 
-public class RoundProgress extends PreferenceActivity
+/**
+ * This Preference activity is used to control the Materialish ProgressBar in MEUI.
+ * When the preferences change, it will save settings to system.
+ * @author zhaozihanzzh
+ */
+
+public class RoundProgress extends BaseProvider//PreferenceActivity
 {
-	/**
-	 * This Preference activity is used to control the Materialish ProgressBar in MEUI.
-	 * When the preferences change, it will save settings to system.
-	 * @author zhaozihanzzh
-	 */
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
+	protected int getXmlId()
 	{
-		SharedPreferences meui=getSharedPreferences("com.meui.RomCtrl_preferences", Context.MODE_WORLD_READABLE);
-		meui.getString("share_screenshot", "");
-		super.onCreate(savedInstanceState);
-		addPreferencesFromResource(R.xml.wheel_progress);
-		meui.registerOnSharedPreferenceChangeListener(new SharedPreferences. OnSharedPreferenceChangeListener(){
-				@Override
-				public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
-				{
-					save();
-				}
-			});
+		return R.xml.wheel_progress;
 	}
-
-	private SharedPreferences.OnSharedPreferenceChangeListener mListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
-
-		@Override
-		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
-		{
-			save();
-		}
-	};
-
-    private void save()
+	
+	@Override
+    protected void save()
 	{
 		final ContentResolver CR=getContentResolver();
 		SharedPreferences meui=getSharedPreferences("com.meui.RomCtrl_preferences", Context.MODE_WORLD_READABLE);
@@ -75,19 +58,5 @@ public class RoundProgress extends PreferenceActivity
 					break;
 			}
 		}
-	}
-
-	@Override
-	protected void onResume()
-	{
-		PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).registerOnSharedPreferenceChangeListener(mListener);
-		super.onResume();
-	}
-
-	@Override
-	protected void onPause()
-	{
-		PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).unregisterOnSharedPreferenceChangeListener(mListener);
-		super.onPause();
 	}
 }

@@ -1,32 +1,50 @@
 package com.meui.RomCtrl;
-import android.content.res.*;
-import android.os.*;
-import android.preference.*;
-import android.util.*;
-import android.provider.*;
 import android.content.*;
+import android.preference.*;
+import android.provider.*;
+import android.util.*;
 import android.widget.*;
+import java.util.*;
 
-public class LockScreenPref extends PreferenceActivity
+/**
+ * This is used to control something in lockscreen.
+ * @author zhaozihanzzh
+ */
+
+public class LockScreenPref extends BaseProvider
 {
-	/**
-	 * This is used to control something in lockscreen.
-	 * @author zhaozihanzzh
-	 */
+
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
+	protected int getXmlId()
 	{
-		super.onCreate(savedInstanceState);
-		addPreferencesFromResource(R.xml.lockscreen);
-		final CheckBoxPreference mLunar=(CheckBoxPreference)getPreferenceScreen().findPreference("show_lslunar");
-		mLunar.setOnPreferenceChangeListener(new CheckBoxPreference.OnPreferenceChangeListener(){
-			@Override
-			public boolean onPreferenceChange(Preference p1,Object p2){
-				final int result=getSharedPreferences("com.meui.RomCtrl_preferences",Context.MODE_WORLD_READABLE).getBoolean(p1.getKey(),false)?0:1;
-				//上一行用0和1而不用1和0是取反，因为此时还没有return true，获取的是上次的值，而change后应该正好相反。
-				Settings.System.putInt(getContentResolver(),"ls_lunar",result);
-				return true;
+		return R.xml.lockscreen;
+	}
+
+	@Override
+	protected void save()
+	{
+		final ContentResolver CR=getContentResolver();
+		SharedPreferences meui=getSharedPreferences("com.meui.RomCtrl_preferences", Context.MODE_WORLD_READABLE);
+		final Map<String,?> mdhp=meui.getAll();
+		for (Map.Entry<String,?> entry:mdhp.entrySet())
+		{
+			switch (entry.getKey().toString())
+			{
+				case "ls_lunar_color":
+					Settings.System.putInt(CR, entry.getKey().toString(), Integer.valueOf(entry.getValue()));
+					break;
+				case "ls_lunar_size":
+					Settings.System.putFloat(CR, entry.getKey(), Float.parseFloat(entry.getValue().toString()));
+					break;
+				case "ls_lunar":
+					final CheckBoxPreference cbp=(CheckBoxPreference)findPreference(entry.getKey().toString());
+					Settings.System.putInt(CR, entry.getKey().toString(), cbp.isChecked() ?1: 0);
+					break;
+				default:
+					Toast.makeText(this, "存在意外的选项,程序可能已被修改。", Toast.LENGTH_LONG);
+					Log.d(LockScreenPref.class.getSimpleName(), "Unexpected item:" + entry.getKey().toString());
+					break;
 			}
-		});
+		}
 	}
 }

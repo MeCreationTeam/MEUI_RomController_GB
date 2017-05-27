@@ -2,11 +2,12 @@ package com.meui.RomCtrl;
 import android.os.*;
 import android.preference.*;
 
+/**
+ * This is used to show about info.
+ */
+
 public class About extends PreferenceActivity
 {
-	/**
-	 * This is used to show about info.
-	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -14,5 +15,4 @@ public class About extends PreferenceActivity
 		addPreferencesFromResource(R.xml.about);
 		
 	}
-	
 }
