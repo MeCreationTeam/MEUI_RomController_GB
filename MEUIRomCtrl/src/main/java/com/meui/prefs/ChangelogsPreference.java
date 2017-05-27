@@ -9,14 +9,15 @@ import java.io.*;
 import java.net.*;
 import android.os.*;
 
+/**
+ * A DialogPreference which shows Changelog from GitHub.
+ * @author zhaozihanzzh
+ */
+
 public class ChangelogsPreference extends DialogPreference
 {
-	/**
-	 * A DialogPreference which shows Changelog from GitHub.
-	 * @author zhaozihanzzh
-	 */
-	
 	private final String FRESHING="正在获取……";
+	private final String ERROR="加载失败，请检查网络连接。";
 	private String mChangelog=FRESHING;
 	private Context context;
 	private AlertDialog mDialog;
@@ -34,15 +35,16 @@ public class ChangelogsPreference extends DialogPreference
 	@Override
 	protected void onPrepareDialogBuilder(AlertDialog.Builder builder)
 	{
+		final boolean needsFreshing=(mChangelog==FRESHING)||(mChangelog==ERROR);
 		mText=new TextView(context);
-		mText.setText(mChangelog);
+		mText.setText(needsFreshing? FRESHING:mChangelog);
 		final int padding=Build.VERSION.SDK_INT>20 ? 48: 6;
 		mText.setPadding(padding,8,padding-6,0);
 		try
 		{
 		final int VERSION=context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
 		
-		if (mChangelog == FRESHING) loadChangelogs(VERSION);
+		if (needsFreshing) loadChangelogs(VERSION);
 		mDialog=builder.setCancelable(true)
 			  					  .setNegativeButton("",null)
 								  .setView(mText)
@@ -81,7 +83,8 @@ public class ChangelogsPreference extends DialogPreference
 					}
 					catch (Exception e)
 					{
-						mText.setText("加载失败，请检查网络连接。");
+						mChangelog=ERROR;
+						showChangelog();
 						Log.e("MEUI",e.toString());
 					}
 					finally{
