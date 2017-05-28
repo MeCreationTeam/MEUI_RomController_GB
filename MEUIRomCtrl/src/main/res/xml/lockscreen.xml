@@ -8,13 +8,15 @@
 	<net.margaritov.preference.colorpicker.ColorPickerPreference
         android:key="ls_lunar_color"
         android:title="农历颜色"
-        android:defaultValue="0xFFFFFFFF"    
+        android:defaultValue="0xFFFFFFFF"
+		android:dependency="ls_lunar"
         alphaSlider="true"/>
 	<com.meui.prefs.SeekBarPreference
 		android:title="农历字号"
 		android:key="ls_lunar_size"
 		android:defaultValue="18"
 		android:max="25"
+		android:dependency="ls_lunar"
 		android:dialogMessage="默认:18"/>
 	
 </PreferenceScreen>

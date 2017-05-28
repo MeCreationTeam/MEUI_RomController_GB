@@ -35,10 +35,7 @@ import android.widget.LinearLayout;
  *
  * @author Sergey Margaritov
  */
-public class ColorPickerPreference
-        extends
-        Preference
-        implements
+public class ColorPickerPreference extends Preference implements
         Preference.OnPreferenceClickListener,
         ColorPickerDialog.OnColorChangedListener {
 
@@ -46,8 +43,8 @@ public class ColorPickerPreference
     ColorPickerDialog mDialog;
     private int mValue = Color.BLACK;
     private float mDensity = 0;
-    private boolean mAlphaSliderEnabled = false;
-    private boolean mHexValueEnabled = false;
+    private boolean mAlphaSliderEnabled = true;
+    private boolean mHexValueEnabled = true;
 
     public ColorPickerPreference(Context context) {
         super(context);
@@ -90,10 +87,10 @@ public class ColorPickerPreference
     private void init(Context context, AttributeSet attrs) {
         mDensity = getContext().getResources().getDisplayMetrics().density;
         setOnPreferenceClickListener(this);
-        if (attrs != null) {
-            mAlphaSliderEnabled = attrs.getAttributeBooleanValue(null, "alphaSlider", false);
-            mHexValueEnabled = attrs.getAttributeBooleanValue(null, "hexValue", false);
-        }
+        /*if (attrs != null) {
+            mAlphaSliderEnabled = attrs.getAttributeBooleanValue(null, "alphaSlider", true);
+            mHexValueEnabled = attrs.getAttributeBooleanValue(null, "hexValue", true);
+        }*/
     }
 
     @Override

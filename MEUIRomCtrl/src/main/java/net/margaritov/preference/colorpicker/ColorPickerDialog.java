@@ -37,10 +37,7 @@ import android.widget.TextView;
 import java.util.Locale;
 import com.meui.RomCtrl.*;
 
-public class ColorPickerDialog
-        extends
-        Dialog
-        implements
+public class ColorPickerDialog extends Dialog implements
         ColorPickerView.OnColorChangedListener,
         View.OnClickListener, ViewTreeObserver.OnGlobalLayoutListener {
 

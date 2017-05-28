@@ -8,9 +8,7 @@
 			android:data="https://github.com/MeCreationTeam/MEUI_RomController_GB"/>
 	</Preference>
 	<com.meui.prefs.ChangelogsPreference
-		android:title="更新日志"
-		android:key="changelogs"/>
-
+		android:title="更新日志"/>
 
 	<PreferenceCategory
 		android:title="开源相关" />
