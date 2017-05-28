@@ -3,6 +3,7 @@
 	<EditTextPreference
 		android:title="截图路径"
 		android:key="path"
+		android:dialogMessage="请输入路径中/mnt/sdcard/后面的部分。\n默认：DCIM/Screenshots"
 		android:defaultValue="DCIM/Screenshots"/>
 	<CheckBoxPreference
 		android:title="截图后弹出分享菜单"
@@ -20,7 +21,6 @@
 		android:entryValues="@array/screenshot_format"
 		android:defaultValue="png"
 		android:entries="@array/screenshot_format"/>
-
 	<com.meui.prefs.SeekBarPreference
 		android:title="截图延时"
 		android:key="screenshot_delay"
