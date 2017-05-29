@@ -25,8 +25,8 @@ public class LockScreenPref extends BaseProvider
 	{
 		final ContentResolver CR=getContentResolver();
 		SharedPreferences meui=getSharedPreferences("com.meui.RomCtrl_preferences", Context.MODE_WORLD_READABLE);
-		final Map<String,?> mdhp=meui.getAll();
-		for (Map.Entry<String,?> entry:mdhp.entrySet())
+		final Map<String,?> ls=meui.getAll();
+		for (Map.Entry<String,?> entry:ls.entrySet())
 		{
 			switch (entry.getKey().toString())
 			{
@@ -34,7 +34,7 @@ public class LockScreenPref extends BaseProvider
 					Settings.System.putInt(CR, entry.getKey().toString(), Integer.valueOf(entry.getValue()));
 					break;
 				case "ls_lunar_size":
-					Settings.System.putFloat(CR, entry.getKey(), Float.parseFloat(entry.getValue().toString()));
+					Settings.System.putFloat(CR, entry.getKey().toString(), Float.parseFloat(entry.getValue().toString()));
 					break;
 				case "ls_lunar":
 					final CheckBoxPreference cbp=(CheckBoxPreference)findPreference(entry.getKey().toString());

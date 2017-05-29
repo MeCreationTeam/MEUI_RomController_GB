@@ -13,7 +13,7 @@ abstract public class BaseProvider extends PreferenceActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		SharedPreferences meui=getSharedPreferences("com.meui.RomCtrl_preferences", Context.MODE_WORLD_READABLE);
-		meui.getString("share_screenshot", "");
+		meui.getBoolean("meui", true);
 		super.onCreate(savedInstanceState);
 		
 		addPreferencesFromResource(getXmlId());

@@ -4,6 +4,7 @@ import android.os.*;
 import android.preference.*;
 import java.io.*;
 import android.widget.*;
+import android.util.*;
 
 /**
  * This is used to control MEUI CMScreenshot.
@@ -18,34 +19,38 @@ public class SSPref extends PreferenceActivity
 	{
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.screenshot);
-		SharedPreferences meui= getPreferences(Context.MODE_WORLD_READABLE);
-		meui.getString("share_screenshot", "");
-		PreferenceScreen ssScreen=getPreferenceScreen();
-		Preference pathPref=ssScreen.findPreference("path");
+		
+		SharedPreferences meui= getPreferenceManager().getSharedPreferences();
+		meui.getBoolean("meui", true);
+		EditTextPreference pathPref=(EditTextPreference)findPreference("path");
+		final String lastPath=meui.getString("path","NULL");
+		pathPref.setText(lastPath);
+		Toast.makeText(this,lastPath,Toast.LENGTH_SHORT).show();
 		pathPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
 				@Override
 				public boolean onPreferenceChange(Preference preference, Object newValue)
 				{
-					boolean result=false;
+					Log.wtf("MEUIss","啊啊，新值："+newValue.toString());
 					if ((String)newValue == "")
 					{
-						Toast.makeText(getApplicationContext(), "路径不能为空！", Toast.LENGTH_SHORT).show();
-						return result;
+						Toast.makeText(SSPref.this, "路径不能为空！", Toast.LENGTH_SHORT).show();
+						return false;
 					}
 					String newPath=Environment.getExternalStorageDirectory().toString() + "/" + (String)newValue;
 					try
 					{
 						File newPathFile=new File(newPath);
 						if (!newPathFile.exists()) newPathFile.mkdirs();
-						result = true;
 						newPathFile = null;
 					}
-					catch (Exception ex)
+					catch (Exception e)
 					{
-						Toast.makeText(SSPref.this, "无法读取目录！", Toast.LENGTH_LONG).show();
-						result = false;
+						Log.wtf("MEUIss","啊啊，错误"+e.toString());
+						Toast.makeText(getApplicationContext(), "无法读取目录！", Toast.LENGTH_LONG).show();
+						return false;
 					}
-					return result;
+					
+					return true;
 					//return true才会把新值保存起来
 				}
 			});

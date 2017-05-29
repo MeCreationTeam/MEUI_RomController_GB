@@ -9,6 +9,9 @@
 	</Preference>
 	<com.meui.prefs.ChangelogsPreference
 		android:title="更新日志"/>
+	<Preference
+		android:title="显示Map"
+		android:key="send_map"/>
 
 	<PreferenceCategory
 		android:title="开源相关" />

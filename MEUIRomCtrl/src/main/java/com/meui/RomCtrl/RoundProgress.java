@@ -15,7 +15,7 @@ import android.util.*;
  * @author zhaozihanzzh
  */
 
-public class RoundProgress extends BaseProvider//PreferenceActivity
+public class RoundProgress extends BaseProvider
 {
 	@Override
 	protected int getXmlId()
@@ -41,10 +41,10 @@ public class RoundProgress extends BaseProvider//PreferenceActivity
 					Settings.System.putInt(CR, entry.getKey().toString(), Integer.valueOf(entry.getValue()));
 					break;
 				case "mdhp_baseSpinSpeed":
-					Settings.System.putFloat(CR, entry.getKey(), Float.parseFloat(entry.getValue().toString()) / 1000);
+					Settings.System.putFloat(CR, entry.getKey().toString(), Float.parseFloat(entry.getValue().toString()) / 1000);
 					break;
 				case "mdhp_cycleTime":
-					Settings.System.putString(CR, entry.getKey(), entry.getValue().toString());
+					Settings.System.putString(CR, entry.getKey().toString(), entry.getValue().toString());
 					break;
 				case "mdhp_linear":
 				case "mdhp_quick":
