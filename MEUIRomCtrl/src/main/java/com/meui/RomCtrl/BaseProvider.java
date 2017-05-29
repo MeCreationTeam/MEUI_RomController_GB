@@ -9,30 +9,33 @@ import android.content.*;
  */
 abstract public class BaseProvider extends PreferenceActivity
 {
+	private SharedPreferences meui;
+	private ContentResolver CR;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		SharedPreferences meui=getSharedPreferences("com.meui.RomCtrl_preferences", Context.MODE_WORLD_READABLE);
-		meui.getBoolean("meui", true);
 		super.onCreate(savedInstanceState);
-		
 		addPreferencesFromResource(getXmlId());
+		
+		CR=getApplicationContext().getContentResolver();
+		meui=getPreferenceManager().getSharedPreferences();
+		meui.getBoolean("meui", true);
 		meui.registerOnSharedPreferenceChangeListener(new SharedPreferences. OnSharedPreferenceChangeListener(){
 				@Override
 				public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
 				{
-					save();
+					save(CR,meui);
 				}
 			});
 	}
     abstract protected int getXmlId();
-	abstract protected void save();
+	abstract protected void save(ContentResolver CR, SharedPreferences meui);
 	private SharedPreferences.OnSharedPreferenceChangeListener mListener = new SharedPreferences.OnSharedPreferenceChangeListener()
 	{
 		@Override
 		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
 		{
-			save();
+			save(CR,meui);
 		}
 	};
 	@Override

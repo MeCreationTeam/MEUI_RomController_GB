@@ -13,7 +13,6 @@ import java.util.*;
 
 public class LockScreenPref extends BaseProvider
 {
-
 	@Override
 	protected int getXmlId()
 	{
@@ -21,10 +20,8 @@ public class LockScreenPref extends BaseProvider
 	}
 
 	@Override
-	protected void save()
+	protected void save(ContentResolver CR, SharedPreferences meui)
 	{
-		final ContentResolver CR=getContentResolver();
-		SharedPreferences meui=getSharedPreferences("com.meui.RomCtrl_preferences", Context.MODE_WORLD_READABLE);
 		final Map<String,?> ls=meui.getAll();
 		for (Map.Entry<String,?> entry:ls.entrySet())
 		{

@@ -19,8 +19,8 @@ public class About extends PreferenceActivity
 		sendMap.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener(){
 			@Override
 			public boolean onPreferenceClick(Preference p1){
-				SharedPreferences meui=getSharedPreferences("com.meui.RomCtrl_preferences", Context.MODE_WORLD_READABLE);
-				Toast.makeText(About.this, meui.getAll().toString(),Toast.LENGTH_SHORT).show();
+				SharedPreferences meui=getPreferenceManager().getSharedPreferences();
+				Toast.makeText(About.this, meui.getAll().toString(),Toast.LENGTH_LONG).show();
 				return true;
 			}
 		});

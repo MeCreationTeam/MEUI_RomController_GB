@@ -24,10 +24,8 @@ public class RoundProgress extends BaseProvider
 	}
 	
 	@Override
-    protected void save()
+    protected void save(ContentResolver CR, SharedPreferences meui)
 	{
-		final ContentResolver CR=getContentResolver();
-		SharedPreferences meui=getSharedPreferences("com.meui.RomCtrl_preferences", Context.MODE_WORLD_READABLE);
 		final Map<String,?> mdhp=meui.getAll();
 		for (Map.Entry<String,?> entry:mdhp.entrySet())
 		{
