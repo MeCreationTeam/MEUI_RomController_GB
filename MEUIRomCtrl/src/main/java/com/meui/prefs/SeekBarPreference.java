@@ -1,6 +1,7 @@
 package com.meui.prefs;
 
-/* The following code was written by Matthew Wiggins 
+/**
+ * The following code was written by Matthew Wiggins 
  * and is released under the APACHE 2.0 license 
  * 
  * http://www.apache.org/licenses/LICENSE-2.0
@@ -12,14 +13,16 @@ import android.util.*;
 import android.view.*;
 import android.widget.*;
 import android.os.*;
+import android.text.*;
 
 
-public class SeekBarPreference extends DialogPreference implements SeekBar.OnSeekBarChangeListener
+public class SeekBarPreference extends DialogPreference implements SeekBar.OnSeekBarChangeListener, TextView.OnEditorActionListener
 {
 	private static final String androidns="http://schemas.android.com/apk/res/android";
 
 	private SeekBar mSeekBar;
-	private TextView mSplashText,mValueText;
+	private TextView mSplashText;//,mValueText;
+	private EditText mValueText;
 	private Context mContext;
 
 	private String mDialogMessage, mSuffix;
@@ -49,9 +52,14 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
 			mSplashText.setText(mDialogMessage);
 		layout.addView(mSplashText);
 
-		mValueText = new TextView(mContext);
+		//mValueText = new TextView(mContext);
+		mValueText = new EditText(mContext);
 		mValueText.setGravity(Gravity.CENTER_HORIZONTAL);
 		mValueText.setTextSize(32);
+		mValueText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Integer.toString(mMax).length())});
+		mValueText.setSingleLine();
+		mValueText.setInputType(InputType.TYPE_CLASS_NUMBER);
+		mValueText.setOnEditorActionListener(this);
 		params = new LinearLayout.LayoutParams(
 			LinearLayout.LayoutParams.MATCH_PARENT, 
 			LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -102,6 +110,19 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
 		if(which==dialog.BUTTON_POSITIVE&&shouldPersist()&&hasChanged)
 				persistInt(newValue);
 	}
+	@Override
+	public boolean onEditorAction(TextView p1, int p2, KeyEvent p3)
+	{
+		final int tempValue=Integer.parseInt(p1.getText().toString());
+		if(tempValue<0||tempValue>mMax){
+			mValueText.setText(String.valueOf(mSeekBar.getProgress()));
+			return true;
+		}
+		onProgressChanged(mSeekBar,tempValue,false);
+		mSeekBar.setProgress(newValue);
+		return false;
+	}
+	
 	@Override
 	public void onStartTrackingTouch(SeekBar seek) {}
 	@Override
