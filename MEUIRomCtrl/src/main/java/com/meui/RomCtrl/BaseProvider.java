@@ -7,6 +7,7 @@ import android.content.*;
  * This is used as the superclass of the classes which are used for putting values in Settings.System
  * @author zhaozihanzzh
  */
+
 abstract public class BaseProvider extends PreferenceActivity
 {
 	private SharedPreferences meui;

@@ -5,6 +5,7 @@ import android.preference.*;
 
 /**
  * The main activity for MEUIRomCtrl.
+ * @author zhaozihanzzh
  */
 
 public class MainActivity extends PreferenceActivity 
@@ -12,8 +13,7 @@ public class MainActivity extends PreferenceActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-		getPreferences(Context.MODE_WORLD_READABLE|Context.MODE_WORLD_WRITEABLE);
-        super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.main);
 	}
 }

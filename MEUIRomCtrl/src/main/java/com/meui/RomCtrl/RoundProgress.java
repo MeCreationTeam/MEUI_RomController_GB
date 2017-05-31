@@ -1,13 +1,10 @@
 package com.meui.RomCtrl;
 import android.content.*;
-import android.os.*;
 import android.preference.*;
-import android.net.*;
-import java.util.prefs.*;
-import java.util.*;
 import android.provider.*;
-import android.widget.*;
 import android.util.*;
+import android.widget.*;
+import java.util.*;
 
 /**
  * This Preference activity is used to control the Materialish ProgressBar in MEUI.
@@ -47,7 +44,7 @@ public class RoundProgress extends BaseProvider
 				case "mdhp_linear":
 				case "mdhp_quick":
 				case "mdhp_cache":
-					CheckBoxPreference cbp=(CheckBoxPreference)findPreference(entry.getKey().toString());
+					final CheckBoxPreference cbp=(CheckBoxPreference)findPreference(entry.getKey().toString());
 					Settings.System.putInt(CR, entry.getKey().toString(), cbp.isChecked() ?1: 0);
 					break;
 				default:

@@ -25,7 +25,7 @@ public class SSPref extends BaseProvider
 	@Override
 	protected void save(ContentResolver CR, SharedPreferences meui)
 	{
-		EditTextPreference pathEditor=(EditTextPreference)findPreference("ss_path");
+		final EditTextPreference pathEditor=(EditTextPreference)findPreference("ss_path");
 		final String lastValue=Settings.System.getString(CR,"ss_path");
 		
 		final Map<String,?> ss=meui.getAll();
@@ -36,12 +36,12 @@ public class SSPref extends BaseProvider
 			{
 				case "ss_path":
 					final String VALUE=entry.getValue().toString();
-					String newPath=Environment.getExternalStorageDirectory().toString() + "/" + VALUE;
+					final String newPath=Environment.getExternalStorageDirectory().toString() + "/" + VALUE;
 					try
 					{
 						File newPathFile=new File(newPath);
 						boolean can=false;
-						boolean exist=newPathFile.exists();
+						final boolean exist=newPathFile.exists();
 						if (!exist) can=newPathFile.mkdirs();
 						newPathFile = null;
 						if(exist||can)Settings.System.putString(CR,KEY,VALUE);
@@ -75,41 +75,4 @@ public class SSPref extends BaseProvider
 			}
 		}
 	}
-	/*
-    @Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-		
-		SharedPreferences meui=getPreferenceManager().getSharedPreferences();
-		EditTextPreference pathPref=(EditTextPreference)findPreference("ss_path");
-		final String lastPath=meui.getString("ss_path","DCIM/Screenshots");
-		//pathPref.setText(lastPath);
-		Toast.makeText(this,lastPath,Toast.LENGTH_SHORT).show();
-		pathPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-				@Override
-				public boolean onPreferenceChange(Preference preference, Object newValue)
-				{
-					if ((String)newValue == "")
-					{
-						Toast.makeText(SSPref.this, "路径不能为空！", Toast.LENGTH_SHORT).show();
-						return false;
-					}
-					String newPath=Environment.getExternalStorageDirectory().toString() + "/" + (String)newValue;
-					try
-					{
-						File newPathFile=new File(newPath);
-						if (!newPathFile.exists()) newPathFile.mkdirs();
-						newPathFile = null;
-					}
-					catch (Exception e)
-					{
-						Toast.makeText(getApplicationContext(), "无法读取目录！", Toast.LENGTH_LONG).show();
-						return false;
-					}
-					return true;
-					//return true才会把新值保存起来
-				}
-			});
-	}*/
 }

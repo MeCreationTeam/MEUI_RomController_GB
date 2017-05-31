@@ -1,12 +1,4 @@
 package com.meui.prefs;
-
-/**
- * The following code was written by Matthew Wiggins 
- * and is released under the APACHE 2.0 license 
- * 
- * http://www.apache.org/licenses/LICENSE-2.0
- */
-
 import android.content.*;
 import android.preference.*;
 import android.util.*;
@@ -15,13 +7,19 @@ import android.widget.*;
 import android.os.*;
 import android.text.*;
 
+/**
+ * The following code was written by Matthew Wiggins 
+ * and is released under the APACHE 2.0 license 
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ */
 
 public class SeekBarPreference extends DialogPreference implements SeekBar.OnSeekBarChangeListener, TextView.OnEditorActionListener
 {
 	private static final String androidns="http://schemas.android.com/apk/res/android";
 
 	private SeekBar mSeekBar;
-	private TextView mSplashText;//,mValueText;
+	private TextView mSplashText;
 	private EditText mValueText;
 	private Context mContext;
 
@@ -52,7 +50,6 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
 			mSplashText.setText(mDialogMessage);
 		layout.addView(mSplashText);
 
-		//mValueText = new TextView(mContext);
 		mValueText = new EditText(mContext);
 		mValueText.setGravity(Gravity.CENTER_HORIZONTAL);
 		mValueText.setTextSize(32);
