@@ -41,7 +41,7 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
 	protected View onCreateDialogView() {
 		final int paddingSide=Build.VERSION.SDK_INT>20 ? 48 : 6;
 		LinearLayout.LayoutParams params;
-		LinearLayout layout = new LinearLayout(mContext);
+		final LinearLayout layout = new LinearLayout(mContext);
 		layout.setOrientation(LinearLayout.VERTICAL);
 		layout.setPadding(paddingSide,8,paddingSide,8);
 
@@ -91,7 +91,7 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
 	@Override
 	public void onProgressChanged(SeekBar seek, int value, boolean fromTouch)
 	{
-		String t = String.valueOf(value);
+		final String t = String.valueOf(value);
 		mValueText.setText(mSuffix == null ? t : t.concat(mSuffix));
 		//if (shouldPersist())
 		//	persistInt(value);
