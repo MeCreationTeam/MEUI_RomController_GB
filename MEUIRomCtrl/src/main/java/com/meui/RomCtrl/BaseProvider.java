@@ -18,9 +18,8 @@ abstract public class BaseProvider extends PreferenceActivity
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(getXmlId());
 		
-		CR=getApplicationContext().getContentResolver();
+		CR=getContentResolver();
 		meui=getPreferenceManager().getSharedPreferences();
-		meui.getBoolean("meui", true);
 		meui.registerOnSharedPreferenceChangeListener(new SharedPreferences. OnSharedPreferenceChangeListener(){
 				@Override
 				public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)

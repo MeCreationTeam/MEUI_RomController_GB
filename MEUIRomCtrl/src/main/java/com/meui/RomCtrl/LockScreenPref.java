@@ -13,6 +13,7 @@ import java.util.*;
 
 public class LockScreenPref extends BaseProvider
 {
+	
 	@Override
 	protected int getXmlId()
 	{
