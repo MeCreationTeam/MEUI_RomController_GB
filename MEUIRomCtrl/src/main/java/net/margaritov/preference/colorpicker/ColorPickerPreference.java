@@ -61,15 +61,17 @@ public class ColorPickerPreference extends Preference implements
         init(context, attrs);
     }
 
-    /**Method edited by
+    /**
+	 * Method edited by
      * @author Anna Berkovitch
      * added functionality to accept hex string as defaultValue
      * and to properly persist resources reference string, such as @color/someColor
-     * previously persisted 0*/
+     * previously persisted 0
+	 */
     @Override
     protected Object onGetDefaultValue(TypedArray a, int index) {
-        int colorInt;
-        String mHexDefaultValue = a.getString(index);
+        final int colorInt;
+        final String mHexDefaultValue = a.getString(index);
         if (mHexDefaultValue != null && mHexDefaultValue.startsWith("#")) {
             colorInt = convertToColorInt(mHexDefaultValue);
             return colorInt;
@@ -102,8 +104,8 @@ public class ColorPickerPreference extends Preference implements
 
     private void setPreviewColor() {
         if (mView == null) return;
-        ImageView iView = new ImageView(getContext());
-        LinearLayout widgetFrameView = ((LinearLayout) mView.findViewById(android.R.id.widget_frame));
+        final ImageView iView = new ImageView(getContext());
+        final LinearLayout widgetFrameView = ((LinearLayout) mView.findViewById(android.R.id.widget_frame));
         if (widgetFrameView == null) return;
         widgetFrameView.setVisibility(View.VISIBLE);
         widgetFrameView.setPadding(
@@ -113,7 +115,7 @@ public class ColorPickerPreference extends Preference implements
                 widgetFrameView.getPaddingBottom()
         );
         // remove already create preview image
-        int count = widgetFrameView.getChildCount();
+        final int count = widgetFrameView.getChildCount();
         if (count > 0) {
             widgetFrameView.removeViews(0, count);
         }
@@ -124,11 +126,11 @@ public class ColorPickerPreference extends Preference implements
     }
 
     private Bitmap getPreviewBitmap() {
-        int d = (int) (mDensity * 31); //30dip
-        int color = mValue;
-        Bitmap bm = Bitmap.createBitmap(d, d, Config.ARGB_8888);
-        int w = bm.getWidth();
-        int h = bm.getHeight();
+        final int d = (int) (mDensity * 31); //30dip
+        final int color = mValue;
+        final Bitmap bm = Bitmap.createBitmap(d, d, Config.ARGB_8888);
+        final int w = bm.getWidth();
+        final int h = bm.getHeight();
         int c = color;
         for (int i = 0; i < w; i++) {
             for (int j = i; j < h; j++) {
@@ -157,6 +159,7 @@ public class ColorPickerPreference extends Preference implements
         }
     }
 
+	@Override
     public boolean onPreferenceClick(Preference preference) {
         showDialog(null);
         return false;
@@ -182,18 +185,18 @@ public class ColorPickerPreference extends Preference implements
      *
      * @param enable
      */
-    public void setAlphaSliderEnabled(boolean enable) {
+    /*public void setAlphaSliderEnabled(boolean enable) {
         mAlphaSliderEnabled = enable;
-    }
+    }*/
 
     /**
      * Toggle Hex Value visibility (by default it's disabled)
      *
      * @param enable
      */
-    public void setHexValueEnabled(boolean enable) {
+    /*public void setHexValueEnabled(boolean enable) {
         mHexValueEnabled = enable;
-    }
+    }*/
 
     /**
      * For custom purposes. Not used by ColorPickerPreferrence
@@ -256,7 +259,7 @@ public class ColorPickerPreference extends Preference implements
     }
 
     /**
-     * For custom purposes. Not used by ColorPickerPreferrence
+     * For custom purposes. Also used by ColorPickerPreference
      *
      * @param argb
      * @throws NumberFormatException
@@ -291,7 +294,7 @@ public class ColorPickerPreference extends Preference implements
             return;
         }
 
-        SavedState myState = (SavedState) state;
+        final SavedState myState = (SavedState) state;
         super.onRestoreInstanceState(myState.getSuperState());
         showDialog(myState.dialogBundle);
     }

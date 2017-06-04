@@ -170,9 +170,9 @@ public class ColorPickerDialog extends Dialog implements
             mHexVal.setVisibility(View.GONE);
     }
 
-    public boolean getHexValueEnabled() {
+    /*public boolean getHexValueEnabled() {
         return mHexValueEnabled;
-    }
+    }*/
 
     private void updateHexLengthFilter() {
         if (getAlphaSliderVisible())

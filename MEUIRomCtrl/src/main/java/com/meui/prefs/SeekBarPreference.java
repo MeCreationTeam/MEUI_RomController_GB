@@ -40,7 +40,7 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
 	@Override 
 	protected View onCreateDialogView() {
 		final int paddingSide=Build.VERSION.SDK_INT>20 ? 48 : 6;
-		LinearLayout.LayoutParams params;
+		final LinearLayout.LayoutParams params;
 		final LinearLayout layout = new LinearLayout(mContext);
 		layout.setOrientation(LinearLayout.VERTICAL);
 		layout.setPadding(paddingSide,8,paddingSide,8);

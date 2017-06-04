@@ -53,7 +53,7 @@ public class ColorPickerPanelView extends View {
 
 
     public ColorPickerPanelView(Context context) {
-        this(context, null);
+        this(context, null, 0);
     }
 
     public ColorPickerPanelView(Context context, AttributeSet attrs) {
@@ -137,7 +137,6 @@ public class ColorPickerPanelView extends View {
 
     /**
      * Set the color that should be shown by this view.
-     *
      * @param color
      */
     public void setColor(int color) {
@@ -147,7 +146,6 @@ public class ColorPickerPanelView extends View {
 
     /**
      * Get the color currently show by this view.
-     *
      * @return
      */
     public int getColor() {
@@ -159,16 +157,16 @@ public class ColorPickerPanelView extends View {
      *
      * @param color
      */
-    public void setBorderColor(int color) {
+    /*public void setBorderColor(int color) {
         mBorderColor = color;
         invalidate();
-    }
+    }*/
 
     /**
      * Get the color of the border surrounding the panel.
      */
-    public int getBorderColor() {
+    /*public int getBorderColor() {
         return mBorderColor;
-    }
+    }*/
 
 }
