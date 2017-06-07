@@ -16,22 +16,12 @@
 
 package net.margaritov.preference.colorpicker;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.ComposeShader;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.Paint.Align;
-import android.graphics.Paint.Style;
-import android.graphics.Point;
-import android.graphics.PorterDuff;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.Shader.TileMode;
-import android.util.AttributeSet;
-import android.view.MotionEvent;
-import android.view.View;
+import android.content.*;
+import android.graphics.*;
+import android.graphics.Paint.*;
+import android.graphics.Shader.*;
+import android.util.*;
+import android.view.*;
 
 /**
  * Displays a color picker to the user and allow them
@@ -140,7 +130,7 @@ public class ColorPickerView extends View {
     }
 
     public ColorPickerView(Context context) {
-        this(context, null);
+        this(context, null, 0);
     }
 
     public ColorPickerView(Context context, AttributeSet attrs) {
@@ -199,10 +189,8 @@ public class ColorPickerView extends View {
     }
 
     private float calculateRequiredOffset() {
-        float offset = Math.max(PALETTE_CIRCLE_TRACKER_RADIUS, RECTANGLE_TRACKER_OFFSET);
-        offset = Math.max(offset, BORDER_WIDTH_PX * mDensity);
-
-        return offset * 1.5f;
+        return 1.5f* Math.max(Math.max(PALETTE_CIRCLE_TRACKER_RADIUS, RECTANGLE_TRACKER_OFFSET),
+							  BORDER_WIDTH_PX * mDensity);
     }
 
     private int[] buildHueColorArray() {
@@ -725,10 +713,10 @@ public class ColorPickerView extends View {
             panelSide -= PANEL_SPACING + ALPHA_PANEL_HEIGHT;
         }
 
-        float left = dRect.left + BORDER_WIDTH_PX;
-        float top = dRect.top + BORDER_WIDTH_PX;
-        float bottom = top + panelSide;
-        float right = left + panelSide;
+        final float left = dRect.left + BORDER_WIDTH_PX;
+        final float top = dRect.top + BORDER_WIDTH_PX;
+        final float bottom = top + panelSide;
+        final float right = left + panelSide;
 
         mSatValRect = new RectF(left, top, right, bottom);
     }
@@ -736,10 +724,10 @@ public class ColorPickerView extends View {
     private void setUpHueRect() {
         final RectF dRect = mDrawingRect;
 
-        float left = dRect.right - HUE_PANEL_WIDTH + BORDER_WIDTH_PX;
-        float top = dRect.top + BORDER_WIDTH_PX;
-        float bottom = dRect.bottom - BORDER_WIDTH_PX - (mShowAlphaPanel ? (PANEL_SPACING + ALPHA_PANEL_HEIGHT) : 0);
-        float right = dRect.right - BORDER_WIDTH_PX;
+        final float left = dRect.right - HUE_PANEL_WIDTH + BORDER_WIDTH_PX;
+        final float top = dRect.top + BORDER_WIDTH_PX;
+        final float bottom = dRect.bottom - BORDER_WIDTH_PX - (mShowAlphaPanel ? (PANEL_SPACING + ALPHA_PANEL_HEIGHT) : 0);
+        final float right = dRect.right - BORDER_WIDTH_PX;
 
         mHueRect = new RectF(left, top, right, bottom);
     }

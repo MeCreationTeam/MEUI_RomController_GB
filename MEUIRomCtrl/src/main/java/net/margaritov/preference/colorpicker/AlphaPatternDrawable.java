@@ -16,13 +16,9 @@
 
 package net.margaritov.preference.colorpicker;
 
-import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
+import android.graphics.*;
+import android.graphics.Bitmap.*;
+import android.graphics.drawable.*;
 
 /**
  * This drawable that draws a simple white and gray chessboard pattern.

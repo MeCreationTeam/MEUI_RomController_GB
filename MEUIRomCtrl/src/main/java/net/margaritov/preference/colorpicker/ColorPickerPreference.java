@@ -39,8 +39,8 @@ public class ColorPickerPreference extends Preference implements
         Preference.OnPreferenceClickListener,
         ColorPickerDialog.OnColorChangedListener {
 
-    View mView;
-    ColorPickerDialog mDialog;
+    private View mView;
+    private ColorPickerDialog mDialog;
     private int mValue = Color.BLACK;
     private float mDensity = 0;
     private boolean mAlphaSliderEnabled = true;
@@ -76,9 +76,8 @@ public class ColorPickerPreference extends Preference implements
             colorInt = convertToColorInt(mHexDefaultValue);
             return colorInt;
 
-        } else {
+        } else
             return a.getColor(index, Color.BLACK);
-        }
     }
 
     @Override
@@ -116,9 +115,7 @@ public class ColorPickerPreference extends Preference implements
         );
         // remove already create preview image
         final int count = widgetFrameView.getChildCount();
-        if (count > 0) {
-            widgetFrameView.removeViews(0, count);
-        }
+        if (count > 0) widgetFrameView.removeViews(0, count);
         widgetFrameView.addView(iView);
         widgetFrameView.setMinimumWidth(0);
         iView.setBackgroundDrawable(new AlphaPatternDrawable((int) (5 * mDensity)));

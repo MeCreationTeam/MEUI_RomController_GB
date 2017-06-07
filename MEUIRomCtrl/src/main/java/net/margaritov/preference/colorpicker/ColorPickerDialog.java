@@ -16,26 +16,17 @@
 
 package net.margaritov.preference.colorpicker;
 
-import android.app.Dialog;
-import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.PixelFormat;
-import android.os.Bundle;
-import android.text.InputFilter;
-import android.text.InputType;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewTreeObserver;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import java.util.Locale;
+import android.app.*;
+import android.content.*;
+import android.content.res.*;
+import android.graphics.*;
+import android.os.*;
+import android.text.*;
+import android.view.*;
+import android.view.inputmethod.*;
+import android.widget.*;
 import com.meui.RomCtrl.*;
+import java.util.*;
 
 public class ColorPickerDialog extends Dialog implements
         ColorPickerView.OnColorChangedListener,
@@ -120,9 +111,9 @@ public class ColorPickerDialog extends Dialog implements
                         } catch (IllegalArgumentException e) {
                             mHexVal.setTextColor(Color.RED);
                         }
-                    } else {
-                        mHexVal.setTextColor(Color.RED);
-                    }
+                    } else
+					mHexVal.setTextColor(Color.RED);
+                    
                     return true;
                 }
                 return false;
@@ -218,10 +209,8 @@ public class ColorPickerDialog extends Dialog implements
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.new_color_panel) {
-            if (mListener != null) {
+        if (v.getId() == R.id.new_color_panel && mListener != null) {
                 mListener.onColorChanged(mNewColor.getColor());
-            }
         }
         dismiss();
     }

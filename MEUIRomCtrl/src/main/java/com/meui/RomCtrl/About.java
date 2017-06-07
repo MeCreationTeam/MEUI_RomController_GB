@@ -17,7 +17,6 @@ public class About extends PreferenceActivity
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.about);
 		final Preference sendMap=findPreference("send_map");
-		sendMap.setSummary(null);
 		sendMap.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener(){
 			@Override
 			public boolean onPreferenceClick(Preference p1){
