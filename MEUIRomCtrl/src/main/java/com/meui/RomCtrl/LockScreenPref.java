@@ -17,9 +17,7 @@ public class LockScreenPref extends BaseProvider
 	@Override
 	protected int getXmlId()
 	{
-		throw new java.lang.NullPointerException();
-
-		//return R.xml.lockscreen;
+		return R.xml.lockscreen;
 	}
 
 	@Override

@@ -1,8 +1,12 @@
 package com.meui.RomCtrl;
 import android.app.*;
 import android.os.*;
-import android.view.*;
 import android.widget.*;
+
+/**
+ * When app crashes, start this activity.
+ * @author zhaozihanzzh
+ */
 
 public class Crash extends Activity
 {
@@ -10,12 +14,18 @@ public class Crash extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		final String log=getIntent().getStringExtra("log");
 		LinearLayout root=new LinearLayout(Crash.this);
 		TextView error=new TextView(Crash.this);
-		error.setText("TEST");
+		error.setText(log);
 		root.addView(error);
 		setContentView(root);
-		Toast.makeText(Crash.this,"TEST",Toast.LENGTH_SHORT).show();
 	}
 	
+	@Override
+	protected void onDestroy()
+	{
+		super.onDestroy();
+		finish();
+	}
 }
