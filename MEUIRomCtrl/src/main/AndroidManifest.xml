@@ -19,14 +19,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SSPref"
-            android:label="@string/app_name"/>
+            android:name=".SSPref"/>
 		<activity
-            android:name=".About"
-            android:label="@string/app_name"/>
+            android:name=".About"/>
 		<activity
-            android:name=".RoundProgress"
-            android:label="@string/app_name"/>
+            android:name=".RoundProgress"/>
 		<activity
 			android:name=".LockScreenPref"/>
 		<activity

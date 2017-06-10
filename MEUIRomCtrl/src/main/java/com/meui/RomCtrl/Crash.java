@@ -1,6 +1,8 @@
 package com.meui.RomCtrl;
 import android.app.*;
+import android.content.*;
 import android.os.*;
+import android.view.*;
 import android.widget.*;
 
 /**
@@ -8,24 +10,34 @@ import android.widget.*;
  * @author zhaozihanzzh
  */
 
-public class Crash extends Activity
+public class Crash extends Activity implements View.OnClickListener
 {
+	private String log;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		final String log=getIntent().getStringExtra("log");
-		LinearLayout root=new LinearLayout(Crash.this);
-		TextView error=new TextView(Crash.this);
+		log=getIntent().getStringExtra("log");
+		setContentView(R.layout.crash);
+		final TextView error=(TextView)findViewById(R.id.crash_text);
 		error.setText(log);
-		root.addView(error);
-		setContentView(root);
+		
+		findViewById(R.id.crash_copy).setOnClickListener(this);
+		findViewById(R.id.crash_close).setOnClickListener(this);
 	}
-	
+
 	@Override
-	protected void onDestroy()
+	public void onClick(View p1)
 	{
-		super.onDestroy();
-		finish();
+		switch(p1.getId()){
+			case R.id.crash_close:
+				finish();
+				break;
+			case R.id.crash_copy:
+				final android.text.ClipboardManager cmb=(android.text.ClipboardManager)this.getSystemService(Context.CLIPBOARD_SERVICE);
+				cmb.setText(log);
+				Toast.makeText(this,"已将Log复制到剪贴板。",Toast.LENGTH_SHORT).show();
+				break;
+		}
 	}
 }
