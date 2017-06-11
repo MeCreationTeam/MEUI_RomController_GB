@@ -21,7 +21,7 @@ public class LockScreenPref extends BaseProvider
 	}
 
 	@Override
-	protected void save(ContentResolver CR, SharedPreferences meui)
+	protected void save(final ContentResolver CR, final SharedPreferences meui)
 	{
 		final Map<String,?> ls=meui.getAll();
 		for (Map.Entry<String,?> entry:ls.entrySet())

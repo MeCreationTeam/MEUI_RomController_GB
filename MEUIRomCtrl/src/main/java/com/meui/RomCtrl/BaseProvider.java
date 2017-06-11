@@ -29,8 +29,8 @@ abstract public class BaseProvider extends PreferenceActivity
 			});
 	}
     abstract protected int getXmlId();
-	abstract protected void save(ContentResolver CR, SharedPreferences meui);
-	private SharedPreferences.OnSharedPreferenceChangeListener mListener = new SharedPreferences.OnSharedPreferenceChangeListener()
+	abstract protected void save(final ContentResolver CR, final SharedPreferences meui);
+	private final SharedPreferences.OnSharedPreferenceChangeListener mListener = new SharedPreferences.OnSharedPreferenceChangeListener()
 	{
 		@Override
 		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="AppTheme" parent="@android:style/Theme.Material">
+		<item name="android:colorPrimaryDark">@color/md_gray</item>
+	</style>
+	<style name="CrashTheme" parent="@android:style/Theme.Material.NoActionBar">
+	    <!-- 状态栏颜色 -->
+        <item name="android:colorPrimaryDark">@color/primaryDark</item>
 	</style>
 </resources>

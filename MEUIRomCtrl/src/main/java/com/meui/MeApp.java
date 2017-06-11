@@ -28,5 +28,5 @@ public class MeApp extends Application implements Thread.UncaughtExceptionHandle
 		Log.w("MEUI",ex);
 		startActivity(intent);
 		System.exit(0);
-	}  
+	}
  }

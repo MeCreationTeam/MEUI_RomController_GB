@@ -17,6 +17,8 @@ public class Crash extends Activity implements View.OnClickListener
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		setTheme(R.style.CrashTheme);
+		
 		log=getIntent().getStringExtra("log");
 		setContentView(R.layout.crash);
 		final TextView error=(TextView)findViewById(R.id.crash_text);
