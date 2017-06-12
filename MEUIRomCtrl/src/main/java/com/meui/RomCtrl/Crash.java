@@ -34,6 +34,8 @@ public class Crash extends Activity implements View.OnClickListener
 		switch(p1.getId()){
 			case R.id.crash_close:
 				finish();
+				System.exit(0);
+				// System.exit(0) is used for avoiding open a recent app while exiting.
 				break;
 			case R.id.crash_copy:
 				final android.text.ClipboardManager cmb=(android.text.ClipboardManager)this.getSystemService(Context.CLIPBOARD_SERVICE);
