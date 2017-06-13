@@ -4,7 +4,8 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
 	android:orientation="vertical"
-	android:background="#FF37474F">
+	android:background="#FF37474F"
+	android:fitsSystemWindows="true">
 
 	<TextView
 		android:layout_height="96dp"
@@ -38,19 +39,19 @@
 	<Button
 		android:layout_height="wrap_content"
 		android:layout_width="0dp"
-		android:text="关闭"
-		style="?android:attr/buttonBarButtonStyle"
-		android:layout_weight="1.0"
-		android:textColor="#FF009688"
-		android:id="@+id/crash_close"/>
-	<Button
-		android:layout_height="wrap_content"
-		android:layout_width="0dp"
 		android:layout_weight="1.0"
 		android:text="复制"
 		style="?android:attr/buttonBarButtonStyle"
 		android:textColor="#FF009688"
 		android:id="@+id/crash_copy"/>
+	<Button
+		android:layout_height="wrap_content"
+		android:layout_width="0dp"
+		android:text="关闭"
+		style="?android:attr/buttonBarButtonStyle"
+		android:layout_weight="1.0"
+		android:textColor="#FF009688"
+		android:id="@+id/crash_close"/>
 	</LinearLayout>
 
 </LinearLayout>
