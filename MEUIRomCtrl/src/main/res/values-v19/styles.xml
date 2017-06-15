@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<!-- http://blog.csdn.net/article/details?id=50538197 -->
 	<style name="CrashTheme" parent="@android:style/Theme.Holo.NoActionBar">
 		<item name="android:windowTranslucentStatus">true</item>
 		<item name="android:windowTranslucentNavigation">true</item>

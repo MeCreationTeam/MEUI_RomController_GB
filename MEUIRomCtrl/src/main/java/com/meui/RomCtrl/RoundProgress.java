@@ -12,7 +12,7 @@ import java.util.*;
  * @author zhaozihanzzh
  */
 
-public class RoundProgress extends BaseProvider
+public class RoundProgress extends BaseSettings
 {
 	@Override
 	protected int getXmlId()

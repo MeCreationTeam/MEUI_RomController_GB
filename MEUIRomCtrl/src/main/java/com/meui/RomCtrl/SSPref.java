@@ -14,7 +14,7 @@ import java.util.*;
  * @author zhaozihanzzh
  */
 
-public class SSPref extends BaseProvider
+public class SSPref extends BaseSettings
 {
 	private final String PATH_ERROR="截图路径修改无效！";
 	@Override

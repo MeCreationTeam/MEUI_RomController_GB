@@ -8,7 +8,7 @@ import android.content.*;
  * @author zhaozihanzzh
  */
 
-abstract public class BaseProvider extends PreferenceActivity
+abstract public class BaseSettings extends PreferenceActivity
 {
 	private SharedPreferences meui;
 	private ContentResolver CR;

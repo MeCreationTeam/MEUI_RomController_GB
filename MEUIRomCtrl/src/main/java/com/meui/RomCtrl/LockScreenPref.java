@@ -11,7 +11,7 @@ import java.util.*;
  * @author zhaozihanzzh
  */
 
-public class LockScreenPref extends BaseProvider
+public class LockScreenPref extends BaseSettings
 {
 	
 	@Override

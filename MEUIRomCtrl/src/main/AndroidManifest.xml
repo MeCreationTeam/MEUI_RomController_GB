@@ -28,6 +28,8 @@
 			android:name=".LockScreenPref"/>
 		<activity
 			android:name=".Crash"/>
+		<activity
+			android:name=".StatusBarColor"/>
     </application>
 	
 	<uses-permission android:name="android.permission.WRITE_SETTINGS"/>
