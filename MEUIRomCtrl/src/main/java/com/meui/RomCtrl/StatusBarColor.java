@@ -6,6 +6,7 @@ import android.preference.*;
 import com.meui.prefs.*;
 import java.util.*;
 import net.margaritov.preference.colorpicker.*;
+import com.meui.*;
 
 /**
  * The Preference Activity of Status Bar Color.
@@ -13,13 +14,14 @@ import net.margaritov.preference.colorpicker.*;
  * @author zhaozihanzzh
  */
  
-public class StatusBarColor extends BaseSettings
+public class StatusBarColor extends PreferenceActivity
 {
-
+	private MeProvider provider=new MeProvider();
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		addPreferencesFromResource(R.xml.status_bar_color);
 		final PreferenceScreen appArea=(PreferenceScreen)findPreference("app_area");
 		final PackageManager pm = getPackageManager();
 		// Return a List of all packages that are installed on the device.
@@ -36,25 +38,27 @@ public class StatusBarColor extends BaseSettings
 				dependent.setKey(packageInfo.packageName+"_dependent");
 				dependent.setTitle("使用独立设置");
 				info.addPreference(dependent);
+				dependent.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener(){
+					@Override
+					public boolean onPreferenceChange(Preference preference, Object values){
+						// TODO: 存dependent.isChecked()
+						return true;
+					}
+				});
 			
 				final ColorPickerPreference colorPicker=new ColorPickerPreference(StatusBarColor.this);
 				colorPicker.setTitle("设置状态栏颜色");
 				colorPicker.setKey(packageInfo.packageName+"_color");
 				info.addPreference(colorPicker);
 				colorPicker.setDependency(dependent.getKey());
-			
+				colorPicker.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener(){
+					
+					@Override
+					public boolean onPreferenceChange(Preference preference, Object values){
+						// TODO: 存储Integer.parseInt(values);
+						return true;
+					}
+				});
 		}
-	}
-
-	@Override
-	protected int getXmlId()
-	{
-		return R.xml.status_bar_color;
-	}
-
-	@Override
-	protected void save(ContentResolver CR, SharedPreferences meui)
-	{
-		// TODO: Implement this method
 	}
 }
