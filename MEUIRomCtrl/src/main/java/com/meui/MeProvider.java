@@ -4,32 +4,39 @@ import android.content.*;
 import android.database.*;
 import android.net.*;
 import android.database.sqlite.*;
+import android.util.*;
 
 public class MeProvider extends ContentProvider
 {
 	// 胡乱写的，自知只能混过编译，还须仔细查阅相关资料再来重写。
 	public static final Uri CONTENT_URI = Uri.parse("content://com.meui.RomCtrl");
-	private final String STATUS_BAR_COLOR="";
+	private final String STATUS_BAR_COLOR="BarColors";
 	private ContentResolver contentResolver;
-	private SharedPreferences preferences;
 	private MeDatabase database;
+	private Context mContext;
+	
 	@Override
 	public boolean onCreate()
 	{
-		contentResolver=getContext().getContentResolver();
-		Activity context=(Activity)getContext();
-		preferences=context.getPreferences(Context.CONTEXT_IGNORE_SECURITY);
-		database=new MeDatabase(getContext(),"status_bar_colors",null,0);
+		
+		mContext=getContext();
+		contentResolver=mContext.getContentResolver();
+		database=new MeDatabase(mContext,STATUS_BAR_COLOR,null,1);
+		//database
 		return false;
 	}
 
 	@Override
 	public Cursor query(Uri p1, String[] p2, String p3, String[] p4, String p5)
 	{
-		SQLiteQueryBuilder queryBuilder= new SQLiteQueryBuilder();
-		queryBuilder.setTables(STATUS_BAR_COLOR);
-		//queryBuilder.setProjectionMap(
-		return null;
+		if(database==null)database=new MeDatabase(mContext,STATUS_BAR_COLOR,null,1);
+		
+		Log.wtf("MEMEMEMEMEUI","MEMEME"+database.toString());
+		
+		SQLiteDatabase db=database.getWritableDatabase();
+		Log.wtf("MEMEMEMEMEUI",db.toString());
+		
+		return db.query(STATUS_BAR_COLOR,null,null,null,null,null,null);
 	}
 
 	@Override
@@ -41,13 +48,15 @@ public class MeProvider extends ContentProvider
 	@Override
 	public Uri insert(Uri uri, ContentValues values)
 	{
+		if(database==null)database=new MeDatabase(mContext,STATUS_BAR_COLOR,null,1);
+		
 		SQLiteDatabase sqL=database.getWritableDatabase();
 		long rowId = sqL.insert(STATUS_BAR_COLOR, null, values);
 		 if(rowId > 0){
 			 //判断插入是否执行成功
 			 final Uri insertedUserUri = ContentUris.withAppendedId(CONTENT_URI, rowId);
 			 //通知监听器，数据已经改变
-			 getContext().getContentResolver().notifyChange(insertedUserUri, null);
+			 mContext.getContentResolver().notifyChange(insertedUserUri, null);
 			 return insertedUserUri;
 		 }
 		 return uri;
@@ -65,8 +74,9 @@ public class MeProvider extends ContentProvider
 	public int update(Uri p1, ContentValues p2, String p3, String[] p4)
 	{
 		// TODO: Implement this method
+		SQLiteDatabase sqL=database.getWritableDatabase();
+		return sqL.update(STATUS_BAR_COLOR,p2,null,null);
 		
-		return 0;
 	}
 	
 }

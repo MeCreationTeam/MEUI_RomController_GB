@@ -12,6 +12,8 @@ public class MeDatabase extends SQLiteOpenHelper
 	public void onCreate(SQLiteDatabase p1)
 	{
 		// TODO: Implement this method
+		
+		p1.execSQL("create table if not exists BarColors ( id integer primary key autoincrement, packageName text, hasColor integer, color integer);");
 	}
 
 	@Override

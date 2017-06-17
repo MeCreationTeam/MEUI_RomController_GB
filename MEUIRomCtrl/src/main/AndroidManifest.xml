@@ -30,13 +30,13 @@
 			android:name=".Crash"/>
 		<activity
 			android:name=".StatusBarColor"/>
+
+		<provider    
+			android:authorities="com.meui.RomCtrl"  
+			android:name="com.meui.MeProvider"
+			android:exported="true"/>
     </application>
 	
-	<provider    
-		android:authorities="com.meui.RomCtrl"  
-		android:name="com.meui.MeProvider"
-		android:readPermission="MEUI_Read"
-		android:exported="true"/>
 	
 	<uses-permission android:name="android.permission.WRITE_SETTINGS"/>
 	<uses-permission android:name="android.permission.INTERNET"/>
