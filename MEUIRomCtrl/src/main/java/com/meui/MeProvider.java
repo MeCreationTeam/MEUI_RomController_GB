@@ -9,9 +9,9 @@ import android.util.*;
 public class MeProvider extends ContentProvider
 {
 	// 胡乱写的，自知只能混过编译，还须仔细查阅相关资料再来重写。
-	public static final Uri CONTENT_URI = Uri.parse("content://com.meui.RomCtrl");
+	public static final Uri CONTENT_URI = Uri.parse("content://com.meui.RomCtrl/BarColors");
 	private final String STATUS_BAR_COLOR="BarColors";
-	private ContentResolver contentResolver;
+	//private ContentResolver contentResolver;
 	private MeDatabase database;
 	private Context mContext;
 	
@@ -20,23 +20,20 @@ public class MeProvider extends ContentProvider
 	{
 		
 		mContext=getContext();
-		contentResolver=mContext.getContentResolver();
+		//contentResolver=mContext.getContentResolver();
 		database=new MeDatabase(mContext,STATUS_BAR_COLOR,null,1);
 		//database
-		return false;
+		return true;
 	}
 
 	@Override
-	public Cursor query(Uri p1, String[] p2, String p3, String[] p4, String p5)
+	public Cursor query(Uri p1, String[] projection, String selection, String[] selectionArgs, String sortOrder)
 	{
 		if(database==null)database=new MeDatabase(mContext,STATUS_BAR_COLOR,null,1);
 		
-		Log.wtf("MEMEMEMEMEUI","MEMEME"+database.toString());
+		final SQLiteDatabase db=database.getWritableDatabase();
 		
-		SQLiteDatabase db=database.getWritableDatabase();
-		Log.wtf("MEMEMEMEMEUI",db.toString());
-		
-		return db.query(STATUS_BAR_COLOR,null,null,null,null,null,null);
+		return db.query(STATUS_BAR_COLOR,projection,selection,selectionArgs,sortOrder,null,null);
 	}
 
 	@Override
@@ -74,8 +71,9 @@ public class MeProvider extends ContentProvider
 	public int update(Uri p1, ContentValues p2, String p3, String[] p4)
 	{
 		// TODO: Implement this method
-		SQLiteDatabase sqL=database.getWritableDatabase();
-		return sqL.update(STATUS_BAR_COLOR,p2,null,null);
+		final SQLiteDatabase sqL=database.getWritableDatabase();
+		
+		return sqL.update(STATUS_BAR_COLOR,p2,p3,p4);
 		
 	}
 	

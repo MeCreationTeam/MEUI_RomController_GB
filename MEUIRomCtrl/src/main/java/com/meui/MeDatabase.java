@@ -11,15 +11,11 @@ public class MeDatabase extends SQLiteOpenHelper
 	@Override
 	public void onCreate(SQLiteDatabase p1)
 	{
-		// TODO: Implement this method
-		
 		p1.execSQL("create table if not exists BarColors ( id integer primary key autoincrement, packageName text, hasColor integer, color integer);");
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase p1, int p2, int p3)
 	{
-		// TODO: Implement this method
 	}
-	
 }

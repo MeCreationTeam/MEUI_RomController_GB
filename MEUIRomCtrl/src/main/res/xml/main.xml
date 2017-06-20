@@ -21,13 +21,13 @@
 			android:action="android.intent.action.MAIN"
 			android:targetClass="com.meui.RomCtrl.LockScreenPref"/>
 	</Preference>
-	<Preference
+	<!--Preference
 		android:title="状态栏颜色">
 		<intent
 			android:targetPackage="com.meui.RomCtrl"
 			android:action="android.intent.action.MAIN"
 			android:targetClass="com.meui.RomCtrl.StatusBarColor"/>
-	</Preference>
+	</Preference-->
 	<Preference
 		android:title="关于">
 		<intent
@@ -35,11 +35,11 @@
 			android:action="android.intent.action.MAIN"
 			android:targetClass="com.meui.RomCtrl.About"/>
 	</Preference>
-	<Preference
+	<!--Preference
 		android:title="BUG测试">
 		<intent
 			android:targetPackage="com.meui.RomCtrls"
 			android:action="android.intent.action.MAIN"
 			android:targetClass="com.meui.RomCtrl.buggggg"/>
-	</Preference>
+	</Preference-->
 </PreferenceScreen>

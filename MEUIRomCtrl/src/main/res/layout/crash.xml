@@ -11,7 +11,7 @@
 		android:layout_height="96dp"
 		android:layout_width="fill_parent"
 		android:textSize="48sp"
-		android:text="Oh,no!"
+		android:text="Oh, no!"
 		android:gravity="center"
 		android:textColor="#FFB0BEC5"/>
 

@@ -8,6 +8,7 @@ import android.preference.*;
 import com.meui.*;
 import java.util.*;
 import net.margaritov.preference.colorpicker.*;
+import android.widget.*;
 
 /**
  * The Preference Activity of Status Bar Color.
@@ -17,12 +18,13 @@ import net.margaritov.preference.colorpicker.*;
  
 public class StatusBarColor extends PreferenceActivity
 {
-	private MeProvider provider=new MeProvider();
+	//private MeProvider provider=new MeProvider();
+	private ContentResolver resolver;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		
+		resolver=getContentResolver();
 		addPreferencesFromResource(R.xml.status_bar_color);
 		final PreferenceScreen appArea=(PreferenceScreen)findPreference("app_area");
 		final PackageManager pm = getPackageManager();
@@ -43,25 +45,35 @@ public class StatusBarColor extends PreferenceActivity
 				dependent.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener(){
 					@Override
 					public boolean onPreferenceChange(Preference preference, Object values){
-						// TODO: 存dependent.isChecked()
-						// 如果不存在：
 						boolean exist=false;
-						final Cursor cursor=provider.query(MeProvider.CONTENT_URI,null,null,null,null);
-						cursor.moveToFirst();
-						do {
-							if(packageInfo.packageName== cursor.getString( cursor.getColumnIndex("packageName"))){
-								cursor.updateInt(cursor.getColumnIndex("color"),dependent.isChecked()?1:0);
+						Cursor cursor=null;
+						final ContentValues contentValues=new ContentValues();
+						contentValues.put("hasColor",!dependent.isChecked()?1:0);
+						contentValues.put("packageName",packageInfo.packageName);
+						
+						
+						cursor=resolver.query(MeProvider.CONTENT_URI,null,null,null,null);
+						
+						if(!cursor.moveToFirst())resolver.insert(MeProvider.CONTENT_URI,contentValues);
+						else{
+						do{
+							//int c=cursor.getCount();
+							if(cursor.getCount()>0 && packageInfo.packageName.equals(
+													  cursor.getString(cursor.getColumnIndex("packageName"))))
+							{
 								exist=true;
-								break;}
+								int id=cursor.getInt(cursor.getColumnIndex("id"));
+								Toast.makeText(StatusBarColor.this,"id="+id,Toast.LENGTH_SHORT).show();
+								
+								resolver.update(MeProvider.CONTENT_URI,contentValues,"packageName=? AND hasColor=?"/*String.valueOf(id)*/,null);
+								break;
+							}
 						} while (cursor.moveToNext());
-						
-						if(!exist){
-							final ContentValues value=new ContentValues();
-							value.put("packageName",preference.getSummary().toString());
-							value.put("hasColor",!dependent.isChecked() ?1:0);
-							provider.insert(Uri.parse("com.meui.RomCtrl/BarColors"),value);
+						if(cursor!=null)cursor.close();
+					    if(!exist) {
+							resolver.insert(MeProvider.CONTENT_URI,contentValues);
 						}
-						
+						}
 						return true;
 					}
 				});
@@ -75,17 +87,22 @@ public class StatusBarColor extends PreferenceActivity
 					
 					@Override
 					public boolean onPreferenceChange(Preference preference, Object values){
-						// TODO: 存储Integer.parseInt(values);
-						//如果不存在：
-						final Cursor cursor=provider.query(MeProvider.CONTENT_URI,null,null,null,null);
-						//boolean exist=false;
-						cursor.moveToFirst();
-						do {
-							if(packageInfo.packageName== cursor.getString( cursor.getColumnIndex("packageName"))){
-								cursor.updateInt(cursor.getColumnIndex("color"),Integer.parseInt(values.toString()));
+						//final Cursor cursor=resolver.query(MeProvider.CONTENT_URI,null,null,null,null);
+						
+						//cursor.moveToFirst();
+						//do {
+						//	if(packageInfo.packageName.equals(cursor.getString(cursor.getColumnIndex("packageName")))){
+								//cursor.updateInt(cursor.getColumnIndex("color"),Integer.parseInt(values.toString()));
+								//cursor.commitUpdates();
 								//exist=true;
-								break;}
-						} while (cursor.moveToNext());
+								final ContentValues contentValues=new ContentValues();
+								contentValues.put("packageName",packageInfo.packageName);
+								contentValues.put("color",(int)values);
+								resolver.update(MeProvider.CONTENT_URI,contentValues,"color=?",null);
+								
+							//	break;}
+						//} while (cursor.moveToNext());
+						//if(cursor!=null)cursor.close();
 						return true;
 					}
 				});
