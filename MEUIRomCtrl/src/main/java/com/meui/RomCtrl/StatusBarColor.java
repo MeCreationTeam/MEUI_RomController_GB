@@ -13,6 +13,7 @@ import android.widget.*;
 /**
  * The Preference Activity of Status Bar Color.
  * http://m.2cto.com/kf/201504/387107.html
+ * https://m.runoob.com/sqlite/sqlite-update.html
  * @author zhaozihanzzh
  */
  
