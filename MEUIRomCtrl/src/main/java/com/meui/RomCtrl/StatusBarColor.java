@@ -18,7 +18,6 @@ import android.widget.*;
  
 public class StatusBarColor extends PreferenceActivity
 {
-	//private MeProvider provider=new MeProvider();
 	private ContentResolver resolver;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -32,7 +31,6 @@ public class StatusBarColor extends PreferenceActivity
 		List packages = pm.getInstalledPackages(0);
 		for (final PackageInfo packageInfo : packages) {
 			
-				//final AppColorPreference info = new AppColorPreference(StatusBarColor.this,null);
 				final PreferenceScreen info = new PreferenceScreen(StatusBarColor.this,null);
 				info.setTitle(packageInfo.applicationInfo.loadLabel(pm).toString());
 				info.setSummary(packageInfo.packageName);
@@ -50,29 +48,24 @@ public class StatusBarColor extends PreferenceActivity
 						final ContentValues contentValues=new ContentValues();
 						contentValues.put("hasColor",!dependent.isChecked()?1:0);
 						contentValues.put("packageName",packageInfo.packageName);
-						
-						
+					    
 						cursor=resolver.query(MeProvider.CONTENT_URI,null,null,null,null);
 						
 						if(!cursor.moveToFirst())resolver.insert(MeProvider.CONTENT_URI,contentValues);
 						else{
-						do{
-							//int c=cursor.getCount();
-							if(cursor.getCount()>0 && packageInfo.packageName.equals(
-													  cursor.getString(cursor.getColumnIndex("packageName"))))
-							{
-								exist=true;
-								int id=cursor.getInt(cursor.getColumnIndex("id"));
-								Toast.makeText(StatusBarColor.this,"id="+id,Toast.LENGTH_SHORT).show();
-								
-								resolver.update(MeProvider.CONTENT_URI,contentValues,"packageName=? AND hasColor=?"/*String.valueOf(id)*/,null);
-								break;
-							}
-						} while (cursor.moveToNext());
-						if(cursor!=null)cursor.close();
-					    if(!exist) {
-							resolver.insert(MeProvider.CONTENT_URI,contentValues);
-						}
+							do{
+								if(cursor.getCount()>0 && packageInfo.packageName.equals(
+													 	 cursor.getString(cursor.getColumnIndex("packageName"))))
+								{
+									exist=true;
+									final int id=cursor.getInt(cursor.getColumnIndex("id"));
+									
+									resolver.update(MeProvider.CONTENT_URI,contentValues,"id="+id,null);
+									break;
+								}
+							} while (cursor.moveToNext());
+							if(cursor!=null)cursor.close();
+					 	    if(!exist) resolver.insert(MeProvider.CONTENT_URI,contentValues);
 						}
 						return true;
 					}
@@ -87,22 +80,20 @@ public class StatusBarColor extends PreferenceActivity
 					
 					@Override
 					public boolean onPreferenceChange(Preference preference, Object values){
-						//final Cursor cursor=resolver.query(MeProvider.CONTENT_URI,null,null,null,null);
+						final Cursor cursor=resolver.query(MeProvider.CONTENT_URI,null,null,null,null);
 						
-						//cursor.moveToFirst();
-						//do {
-						//	if(packageInfo.packageName.equals(cursor.getString(cursor.getColumnIndex("packageName")))){
-								//cursor.updateInt(cursor.getColumnIndex("color"),Integer.parseInt(values.toString()));
-								//cursor.commitUpdates();
-								//exist=true;
+						cursor.moveToFirst();
+						do {
+							if(packageInfo.packageName.equals(cursor.getString(cursor.getColumnIndex("packageName")))){
 								final ContentValues contentValues=new ContentValues();
 								contentValues.put("packageName",packageInfo.packageName);
 								contentValues.put("color",(int)values);
-								resolver.update(MeProvider.CONTENT_URI,contentValues,"color=?",null);
-								
-							//	break;}
-						//} while (cursor.moveToNext());
-						//if(cursor!=null)cursor.close();
+								final int id=cursor.getInt(cursor.getColumnIndex("id"));
+						
+								resolver.update(MeProvider.CONTENT_URI,contentValues,"id="+id,null);
+								break;}
+						} while (cursor.moveToNext());
+						if(cursor!=null)cursor.close();
 						return true;
 					}
 				});

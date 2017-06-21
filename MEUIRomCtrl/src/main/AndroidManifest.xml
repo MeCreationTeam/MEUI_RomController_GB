@@ -19,13 +19,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SSPref"/>
+            android:name=".Screenshot"/>
 		<activity
             android:name=".About"/>
 		<activity
             android:name=".RoundProgress"/>
 		<activity
-			android:name=".LockScreenPref"/>
+			android:name=".Lockscreen"/>
 		<activity
 			android:name=".Crash"/>
 		<activity

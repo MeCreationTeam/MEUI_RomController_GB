@@ -11,7 +11,7 @@ import java.util.*;
  * @author zhaozihanzzh
  */
 
-public class LockScreenPref extends BaseSettings
+public class Lockscreen extends BaseSettings
 {
 	
 	@Override
@@ -40,7 +40,7 @@ public class LockScreenPref extends BaseSettings
 					break;
 				default:
 					Toast.makeText(this, "存在意外的选项,程序可能已被修改。", Toast.LENGTH_LONG);
-					Log.d(LockScreenPref.class.getSimpleName(), "Unexpected item:" + entry.getKey().toString());
+					Log.d(Lockscreen.class.getSimpleName(), "Unexpected item:" + entry.getKey().toString());
 					break;
 			}
 		}
