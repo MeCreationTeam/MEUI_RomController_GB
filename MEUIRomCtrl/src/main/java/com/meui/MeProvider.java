@@ -6,23 +6,23 @@ import android.net.*;
 import android.database.sqlite.*;
 import android.util.*;
 
+/**
+ * Content Provider for MEUI Status Bar Color settings.
+ * @author zhaozihanzzh
+ */
+
 public class MeProvider extends ContentProvider
 {
-	// 胡乱写的，自知只能混过编译，还须仔细查阅相关资料再来重写。
 	public static final Uri CONTENT_URI = Uri.parse("content://com.meui.RomCtrl/BarColors");
 	private final String STATUS_BAR_COLOR="BarColors";
-	//private ContentResolver contentResolver;
 	private MeDatabase database;
 	private Context mContext;
 	
 	@Override
 	public boolean onCreate()
 	{
-		
 		mContext=getContext();
-		//contentResolver=mContext.getContentResolver();
 		database=new MeDatabase(mContext,STATUS_BAR_COLOR,null,1);
-		//database
 		return true;
 	}
 
@@ -33,7 +33,7 @@ public class MeProvider extends ContentProvider
 		
 		final SQLiteDatabase db=database.getWritableDatabase();
 		
-		return db.query(STATUS_BAR_COLOR,projection,selection,selectionArgs,sortOrder,null,null);
+		return db.query(STATUS_BAR_COLOR,projection,selection,selectionArgs,null,null,sortOrder);
 	}
 
 	@Override
@@ -64,17 +64,24 @@ public class MeProvider extends ContentProvider
 	{
 		SQLiteDatabase sqL=database.getWritableDatabase();
 		final int RESULT=sqL.delete(STATUS_BAR_COLOR,p2,p3);
+		final Uri insertedUserUri = ContentUris.withAppendedId(CONTENT_URI, RESULT);
+		//通知监听器，数据已经改变
+		mContext.getContentResolver().notifyChange(insertedUserUri, null);
 		return RESULT;
 	}
 
 	@Override
-	public int update(Uri p1, ContentValues p2, String p3, String[] p4)
+	public int update(Uri uri, ContentValues values, String p3, String[] p4)
 	{
-		// TODO: Implement this method
 		final SQLiteDatabase sqL=database.getWritableDatabase();
 		
-		return sqL.update(STATUS_BAR_COLOR,p2,p3,p4);
-		
+		final int RESULT = sqL.update(STATUS_BAR_COLOR,values,p3,p4);
+		// if(result>0){
+			final Uri insertedUserUri = ContentUris.withAppendedId(CONTENT_URI, RESULT);
+			//通知监听器，数据已经改变
+			mContext.getContentResolver().notifyChange(insertedUserUri, null);
+		// }
+		return RESULT;
 	}
 	
 }

@@ -2,18 +2,18 @@ package com.meui.RomCtrl;
 import android.content.*;
 import android.content.pm.*;
 import android.database.*;
-import android.net.*;
 import android.os.*;
 import android.preference.*;
+import android.provider.*;
 import com.meui.*;
 import java.util.*;
 import net.margaritov.preference.colorpicker.*;
-import android.widget.*;
 
 /**
  * The Preference Activity of Status Bar Color.
  * http://m.2cto.com/kf/201504/387107.html
  * https://m.runoob.com/sqlite/sqlite-update.html
+ * http://stackoverflow.com/questions/12710292/sorting-list-in-alphabetical-order
  * @author zhaozihanzzh
  */
  
@@ -26,10 +26,65 @@ public class StatusBarColor extends PreferenceActivity
 		super.onCreate(savedInstanceState);
 		resolver=getContentResolver();
 		addPreferencesFromResource(R.xml.status_bar_color);
+		
+		Preference checkDelay=findPreference("sb_check_delay");
+		Preference defaultColor=findPreference("sb_default_color");
+		checkDelay.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener(){
+			@Override
+			public boolean onPreferenceChange(Preference p1,Object p2){
+				Settings.System.putInt(resolver,"sb_check_delay",(int)p2);
+				return true;
+			}
+		});
+		defaultColor.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener(){
+			@Override
+			public boolean onPreferenceChange(Preference p1,Object p2){
+				Settings.System.putInt(resolver,"sb_check_delay",(int)p2);
+				return true;
+			}
+		});
+		
 		final PreferenceScreen appArea=(PreferenceScreen)findPreference("app_area");
 		final PackageManager pm = getPackageManager();
 		// Return a List of all packages that are installed on the device.
-		List packages = pm.getInstalledPackages(0);
+		final List<PackageInfo> packages =  pm.getInstalledPackages(0);
+		Collections.sort(packages,new Comparator<PackageInfo>(){
+				@Override
+				public int compare(PackageInfo one,PackageInfo another)
+				{
+					int result=0;
+					final String firstName=one.applicationInfo.loadLabel(pm).toString();
+					final String secondName=another.applicationInfo.loadLabel(pm).toString();
+					if(isChinese(secondName.charAt(0))&&isChinese(firstName.charAt(0)))
+						result=getPinYin(firstName).compareTo(getPinYin(secondName));
+					else
+						result=firstName.compareTo(secondName);
+					if(result==0)result=one.packageName.compareTo(another.packageName);
+					
+					return result;
+				}
+				// https://zhidao.baidu.com/question/1706071170383329500
+				private boolean isChinese(char c) {
+					return c >= 0x4E00 && c <= 0x9FA5;// 根据字节码判断
+				}
+				//输入汉字返回拼音
+				// http://m.blog.csdn.net/zhangphil/article/details/47164665
+				private String getPinYin(final String hanzi) {
+					final ArrayList<HanziToPinyin.Token> tokens = HanziToPinyin.getInstance().get(hanzi);
+					final StringBuilder sb = new StringBuilder();
+					if (tokens != null && tokens.size() > 0) {
+						for (HanziToPinyin.Token token : tokens) {
+							if (HanziToPinyin.Token.PINYIN == token.type) {
+								sb.append(token.target);
+							} else {
+								sb.append(token.source);
+							}
+						}
+					}
+
+					return sb.toString().toUpperCase();
+				}
+		});
 		for (final PackageInfo packageInfo : packages) {
 			
 				final PreferenceScreen info = new PreferenceScreen(StatusBarColor.this,null);

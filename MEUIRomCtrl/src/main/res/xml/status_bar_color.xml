@@ -6,9 +6,15 @@
 	<PreferenceCategory
 		android:title="全局设置"/>
 	<net.margaritov.preference.colorpicker.ColorPickerPreference
-        android:key="sb_normal_color"
+        android:key="sb_default_color"
         android:defaultValue="0x66000000"
 		android:title="默认颜色"/>
+	<com.meui.prefs.SeekBarPreference
+		android:title="变色间隔时间"
+		android:key="sb_check_delay"
+		android:defaultValue="3000"
+		android:max="15000"
+		android:dialogMessage="默认:3000，单位:毫秒。不建议取值过小！"/>
 	<PreferenceCategory
 		android:title="单应用设置"/>
 </PreferenceScreen>
