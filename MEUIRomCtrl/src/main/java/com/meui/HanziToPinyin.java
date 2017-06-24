@@ -1,5 +1,5 @@
 /*
- * http://m.blog.csdn.net/zhangphil/article/details/47164665
+ * http://blog.csdn.net/zhangphil/article/details/47164665
  * Copyright (C) 2011 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");

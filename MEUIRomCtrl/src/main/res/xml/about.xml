@@ -7,6 +7,12 @@
 			android:action="android.intent.action.VIEW"
 			android:data="https://github.com/MeCreationTeam/MEUI_RomController_GB"/>
 	</Preference>
+	<Preference
+		android:title="许可">
+		<intent
+			android:action="android.intent.action.VIEW"
+			android:data="https://raw.githubusercontent.com/MeCreationTeam/MEUI_RomController_GB/master/LICENSE"/>
+	</Preference>
 	<com.meui.prefs.ChangelogsPreference
 		android:title="更新日志"/>
 	<Preference
@@ -44,6 +50,12 @@
 		<intent
 			android:action="android.intent.action.VIEW"
 			android:data="https://github.com/Hongarc/Lunar"/>
+	</Preference>
+	<Preference
+	android:title="HanziToPinyin">
+	<intent
+		android:action="android.intent.action.VIEW"
+		android:data="http://blog.csdn.net/zhangphil/article/details/47164665"/>
 	</Preference>
 	<!-- 
 	-->

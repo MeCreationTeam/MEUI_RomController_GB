@@ -7,7 +7,7 @@
 		android:title="全局设置"/>
 	<net.margaritov.preference.colorpicker.ColorPickerPreference
         android:key="sb_default_color"
-        android:defaultValue="0x66000000"
+        android:defaultValue="0x4D000000"
 		android:title="默认颜色"/>
 	<com.meui.prefs.SeekBarPreference
 		android:title="变色间隔时间"
