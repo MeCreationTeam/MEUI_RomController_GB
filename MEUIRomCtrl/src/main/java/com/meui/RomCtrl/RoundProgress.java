@@ -12,7 +12,7 @@ import java.util.*;
  * @author zhaozihanzzh
  */
 
-public class RoundProgress extends BaseSettings
+public final class RoundProgress extends BaseSettings
 {
 	@Override
 	protected int getXmlId()
@@ -48,8 +48,6 @@ public class RoundProgress extends BaseSettings
 					Settings.System.putInt(CR, entry.getKey().toString(), cbp.isChecked() ?1: 0);
 					break;
 				default:
-					Toast.makeText(this, "存在意外的选项,程序可能已被修改。", Toast.LENGTH_LONG);
-					Log.d(RoundProgress.class.getSimpleName(), "Unexpected item:" + entry.getKey().toString());
 					break;
 			}
 		}

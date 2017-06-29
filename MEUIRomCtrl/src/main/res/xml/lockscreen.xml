@@ -18,6 +18,23 @@
 		android:max="25"
 		android:dependency="ls_lunar"
 		android:dialogMessage="默认:18"/>
-	
+
+	<CheckBoxPreference
+		android:title="显示节气"
+		android:key="ls_st24_show"
+		android:defaultValue="false"/>
+	<net.margaritov.preference.colorpicker.ColorPickerPreference
+        android:key="ls_st24_textcolor"
+        android:title="节气字体颜色"
+        android:defaultValue="0xFFFFFFFF"
+		android:dependency="ls_st24_show"
+        alphaSlider="true"/>
+	<com.meui.prefs.SeekBarPreference
+		android:title="节气字体字号"
+		android:key="ls_st24_textsize"
+		android:defaultValue="18"
+		android:max="25"
+		android:dependency="ls_st24_show"
+		android:dialogMessage="默认:18"/>
 </PreferenceScreen>
 

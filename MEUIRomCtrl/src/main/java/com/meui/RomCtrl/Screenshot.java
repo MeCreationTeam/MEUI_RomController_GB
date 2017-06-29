@@ -14,7 +14,7 @@ import java.util.*;
  * @author zhaozihanzzh
  */
 
-public class Screenshot extends BaseSettings
+public final class Screenshot extends BaseSettings
 {
 	private final String PATH_ERROR="截图路径修改无效！";
 	@Override
@@ -69,8 +69,6 @@ public class Screenshot extends BaseSettings
 					Settings.System.putInt(CR, KEY, cbp.isChecked() ?1: 0);
 					break;
 				default:
-					Toast.makeText(this, "存在意外的选项,程序可能已被修改。", Toast.LENGTH_LONG);
-					Log.d(Lockscreen.class.getSimpleName(), "Unexpected item:" + entry.getKey().toString());
 					break;
 			}
 		}

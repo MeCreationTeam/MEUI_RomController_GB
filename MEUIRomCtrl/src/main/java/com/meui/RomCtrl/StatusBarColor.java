@@ -8,6 +8,8 @@ import android.provider.*;
 import com.meui.*;
 import java.util.*;
 import net.margaritov.preference.colorpicker.*;
+import android.widget.*;
+import android.view.*;
 
 /**
  * The Preference Activity of Status Bar Color.
@@ -17,18 +19,33 @@ import net.margaritov.preference.colorpicker.*;
  * @author zhaozihanzzh
  */
  
-public class StatusBarColor extends PreferenceActivity
+public final class StatusBarColor extends PreferenceActivity
 {
 	private ContentResolver resolver;
+	private Handler handler=new Handler(){
+
+		@Override
+		public void handleMessage(Message msg)
+		{
+			new Thread(new Runnable(){
+				public void run(){
+			addPerAppTint();
+			}
+			}).run();
+		}
+	};
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		resolver=getContentResolver();
+		
 		addPreferencesFromResource(R.xml.status_bar_color);
 		
-		Preference checkDelay=findPreference("sb_check_delay");
-		Preference defaultColor=findPreference("sb_default_color");
+		
+		final Preference checkDelay=findPreference("sb_check_delay");
+		final Preference defaultColor=findPreference("sb_default_color");
 		checkDelay.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener(){
 			@Override
 			public boolean onPreferenceChange(Preference p1,Object p2){
@@ -43,7 +60,11 @@ public class StatusBarColor extends PreferenceActivity
 				return true;
 			}
 		});
-		
+		handler.sendEmptyMessage(0);
+	}
+
+	private void addPerAppTint()
+	{
 		final PreferenceScreen appArea=(PreferenceScreen)findPreference("app_area");
 		final PackageManager pm = getPackageManager();
 		// Return a List of all packages that are installed on the device.
@@ -100,7 +121,7 @@ public class StatusBarColor extends PreferenceActivity
 					@Override
 					public boolean onPreferenceChange(Preference preference, Object values){
 						boolean exist=false;
-						Cursor cursor=null;
+						final Cursor cursor;
 						final ContentValues contentValues=new ContentValues();
 						contentValues.put("hasColor",!dependent.isChecked()?1:0);
 						contentValues.put("packageName",packageInfo.packageName);

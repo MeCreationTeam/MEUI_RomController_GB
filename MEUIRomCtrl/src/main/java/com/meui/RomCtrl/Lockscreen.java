@@ -11,7 +11,7 @@ import java.util.*;
  * @author zhaozihanzzh
  */
 
-public class Lockscreen extends BaseSettings
+public final class Lockscreen extends BaseSettings
 {
 	
 	@Override
@@ -29,18 +29,19 @@ public class Lockscreen extends BaseSettings
 			switch (entry.getKey().toString())
 			{
 				case "ls_lunar_color":
+				case "ls_st24_textcolor":
 					Settings.System.putInt(CR, entry.getKey().toString(), Integer.valueOf(entry.getValue()));
 					break;
 				case "ls_lunar_size":
+				case "ls_st24_textsize":
 					Settings.System.putFloat(CR, entry.getKey().toString(), Float.parseFloat(entry.getValue().toString()));
 					break;
 				case "ls_lunar":
+				case "ls_st24_show":
 					final CheckBoxPreference cbp=(CheckBoxPreference)findPreference(entry.getKey().toString());
 					Settings.System.putInt(CR, entry.getKey().toString(), cbp.isChecked() ?1: 0);
 					break;
 				default:
-					Toast.makeText(this, "存在意外的选项,程序可能已被修改。", Toast.LENGTH_LONG);
-					Log.d(Lockscreen.class.getSimpleName(), "Unexpected item:" + entry.getKey().toString());
 					break;
 			}
 		}
