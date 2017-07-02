@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.meui.RomCtrl"
-	android:sharedUserId="com.meui">
+    android:sharedUserId="com.meui">
 
     <application
-		android:name="com.meui.MeApp"
+        android:name="com.meui.MeApp"
         android:allowBackup="true"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-		android:configChanges="fontScale">
+        android:configChanges="fontScale">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
@@ -20,27 +20,27 @@
         </activity>
         <activity
             android:name=".Screenshot"/>
-		<activity
+        <activity
             android:name=".About"/>
-		<activity
+        <activity
             android:name=".RoundProgress"/>
-		<activity
-			android:name=".Lockscreen"/>
-		<activity
-			android:name=".Crash"/>
-		<activity
-			android:name=".StatusBarColor"/>
+        <activity
+            android:name=".Lockscreen"/>
+        <activity
+            android:name=".Crash"/>
+        <activity
+            android:name=".StatusBarColor"/>
 
-		<provider    
-			android:authorities="com.meui.RomCtrl"  
-			android:name="com.meui.MeProvider"
-			android:exported="true"
-			android:readPermission="com.meui.RomCtrl.READ"/>
+        <provider    
+            android:authorities="com.meui.RomCtrl"  
+            android:name="com.meui.MeProvider"
+            android:exported="true"
+            android:readPermission="com.meui.RomCtrl.READ"/>
     </application>
-	
-	
-	<uses-permission android:name="android.permission.WRITE_SETTINGS"/>
-	<uses-permission android:name="android.permission.INTERNET"/>
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-	<permission android:name="com.meui.RomCtrl.READ" android:protectionLevel="normal"/>
+    
+    
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <permission android:name="com.meui.RomCtrl.READ" android:protectionLevel="normal"/>
 </manifest>

@@ -13,7 +13,7 @@ public class MainActivity extends PreferenceActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-		super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.main);
-	}
+    }
 }

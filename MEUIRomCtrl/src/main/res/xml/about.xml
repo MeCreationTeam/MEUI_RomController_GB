@@ -1,62 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-	android:title="关于">
-	<Preference
-		android:layout="@layout/about_header">
-		<intent
-			android:action="android.intent.action.VIEW"
-			android:data="https://github.com/MeCreationTeam/MEUI_RomController_GB"/>
-	</Preference>
-	<Preference
-		android:title="许可">
-		<intent
-			android:action="android.intent.action.VIEW"
-			android:data="https://raw.githubusercontent.com/MeCreationTeam/MEUI_RomController_GB/master/LICENSE"/>
-	</Preference>
-	<com.meui.prefs.ChangelogsPreference
-		android:title="更新日志"/>
-	<Preference
-		android:title="显示Map"
-		android:key="send_map"/>
+    android:title="关于">
+    <Preference
+        android:layout="@layout/about_header">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/MeCreationTeam/MEUI_RomController_GB"/>
+    </Preference>
+    <Preference
+        android:title="许可">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://raw.githubusercontent.com/MeCreationTeam/MEUI_RomController_GB/master/LICENSE"/>
+    </Preference>
+    <com.meui.prefs.ChangelogsPreference
+        android:title="更新日志"/>
+    <Preference
+        android:title="显示Map"
+        android:key="send_map"/>
 
-	<PreferenceCategory
-		android:title="开源相关" />
-	<Preference
-		android:title="SeekBar Preference">
-		<intent
-			android:action="android.intent.action.VIEW"
-			android:data="http://android.hlidskialf.com/blog/code/android-seekbar-preference"/>
-	</Preference>
-	<Preference
-		android:title="Materialish Progress">
-		<intent
-			android:action="android.intent.action.VIEW"
-			android:data="https://github.com/pnikosis/materialish-progress"/>
-	</Preference>
-	<Preference
-		android:title="RippleDrawable">
-		<intent
-			android:action="android.intent.action.VIEW"
-			android:data="https://github.com/ozodrukh/RippleDrawable"/>
-	</Preference>
-	<Preference
-		android:title="ColorPickerPreference">
-		<intent
-			android:action="android.intent.action.VIEW"
-			android:data="https://github.com/attenzione/android-ColorPickerPreference"/>
-	</Preference>
-	<Preference
-		android:title="AmLich Lunar">
-		<intent
-			android:action="android.intent.action.VIEW"
-			android:data="https://github.com/Hongarc/Lunar"/>
-	</Preference>
-	<Preference
-	android:title="HanziToPinyin">
-	<intent
-		android:action="android.intent.action.VIEW"
-		android:data="http://blog.csdn.net/zhangphil/article/details/47164665"/>
-	</Preference>
-	<!-- 
-	-->
+    <PreferenceCategory
+        android:title="开源相关" />
+    <Preference
+        android:title="SeekBar Preference">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="http://android.hlidskialf.com/blog/code/android-seekbar-preference"/>
+    </Preference>
+    <Preference
+        android:title="Materialish Progress">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/pnikosis/materialish-progress"/>
+    </Preference>
+    <Preference
+        android:title="RippleDrawable">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/ozodrukh/RippleDrawable"/>
+    </Preference>
+    <Preference
+        android:title="ColorPickerPreference">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/attenzione/android-ColorPickerPreference"/>
+    </Preference>
+    <Preference
+        android:title="AmLich Lunar">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/Hongarc/Lunar"/>
+    </Preference>
+    <Preference
+    android:title="HanziToPinyin">
+    <intent
+        android:action="android.intent.action.VIEW"
+        android:data="http://blog.csdn.net/zhangphil/article/details/47164665"/>
+    </Preference>
+    <!-- 
+    -->
 </PreferenceScreen>

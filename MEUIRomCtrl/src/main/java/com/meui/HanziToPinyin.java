@@ -35,7 +35,7 @@ import java.util.Locale;
  *
  * Currently this file is aligned to zh.txt in ICU 4.6 鏉ヨ嚜android4.2婧愮爜
  */
-public class HanziToPinyin {
+public final class HanziToPinyin {
 	private static final String TAG = "HanziToPinyin";
 
 	// Turn on this flag when we want to check internal data structure.

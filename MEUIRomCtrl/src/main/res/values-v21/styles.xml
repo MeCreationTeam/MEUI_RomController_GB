@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="AppTheme" parent="@android:style/Theme.Material">
-	    <!-- 状态栏颜色 -->
-		<item name="android:colorPrimaryDark">@color/md_gray</item>
-		<!-- 导航栏颜色-->
-		<item name="android:navigationBarColor">@color/md_gray</item>
-	</style>
-	<style name="CrashTheme" parent="@android:style/Theme.Material.NoActionBar">
+        <!-- 状态栏颜色 -->
+        <item name="android:colorPrimaryDark">@color/md_gray</item>
+        <!-- 导航栏颜色-->
+        <item name="android:navigationBarColor">@color/md_gray</item>
+    </style>
+    <style name="CrashTheme" parent="@android:style/Theme.Material.NoActionBar">
         <item name="android:colorPrimaryDark">@color/primaryDark</item>
-		<!-- 导航栏颜色-->
-		<item name="android:navigationBarColor">@color/primaryDark</item>
-	</style>
+        <!-- 导航栏颜色-->
+        <item name="android:navigationBarColor">@color/primaryDark</item>
+    </style>
 </resources>
