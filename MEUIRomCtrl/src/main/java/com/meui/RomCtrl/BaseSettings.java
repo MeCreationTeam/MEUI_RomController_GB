@@ -10,32 +10,32 @@ import android.content.*;
 
 abstract public class BaseSettings extends PreferenceActivity
 {
-    private SharedPreferences meui;
-    private ContentResolver CR;
+    protected SharedPreferences meuiPrefs;
+    protected ContentResolver mResolver;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(getXmlId());
         
-        CR=getContentResolver();
-        meui=getPreferenceManager().getSharedPreferences();
-        meui.registerOnSharedPreferenceChangeListener(new SharedPreferences. OnSharedPreferenceChangeListener(){
+        mResolver=getContentResolver();
+        meuiPrefs=getPreferenceManager().getSharedPreferences();
+        meuiPrefs.registerOnSharedPreferenceChangeListener(new SharedPreferences. OnSharedPreferenceChangeListener(){
                 @Override
                 public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
                 {
-                    save(CR,meui);
+                    save();
                 }
             });
     }
     abstract protected int getXmlId();
-    abstract protected void save(final ContentResolver CR, final SharedPreferences meui);
+    abstract protected void save();
     private final SharedPreferences.OnSharedPreferenceChangeListener mListener = new SharedPreferences.OnSharedPreferenceChangeListener()
     {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
         {
-            save(CR,meui);
+            save();
         }
     };
     @Override

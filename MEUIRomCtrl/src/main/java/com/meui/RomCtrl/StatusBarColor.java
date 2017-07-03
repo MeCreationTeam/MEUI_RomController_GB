@@ -21,16 +21,16 @@ import android.view.*;
  
 public final class StatusBarColor extends PreferenceActivity {
     private ContentResolver resolver;
-    private Handler handler=new Handler(){
+    private boolean isFirst=true;
+    private Preference loadApp;
+    private Handler mHandler=new Handler(){
 
         @Override
         public void handleMessage(Message msg) {
-            new Thread(new Runnable(){
-                public void run(){
+            super.handleMessage(msg);
             addPerAppTint();
-            }
-            }).run();
         }
+        
     };
     
     @Override
@@ -44,6 +44,7 @@ public final class StatusBarColor extends PreferenceActivity {
         
         final Preference checkDelay=findPreference("sb_check_delay");
         final Preference defaultColor=findPreference("sb_default_color");
+        loadApp=findPreference("click_to_load");
         checkDelay.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener(){
             @Override
             public boolean onPreferenceChange(Preference p1,Object p2){
@@ -58,11 +59,19 @@ public final class StatusBarColor extends PreferenceActivity {
                 return true;
             }
         });
-        handler.sendEmptyMessage(0);
+        loadApp.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener(){
+            @Override
+            public boolean onPreferenceClick(Preference p1){
+                p1.setTitle("正在加载……");
+                mHandler.sendEmptyMessage(0);
+                return true;
+            }
+        });
     }
-
     private void addPerAppTint()
     {
+        if(!isFirst)return;
+        isFirst=false;
         final PreferenceScreen appArea=(PreferenceScreen)findPreference("app_area");
         final PackageManager pm = getPackageManager();
         // Return a List of all packages that are installed on the device.
@@ -173,5 +182,6 @@ public final class StatusBarColor extends PreferenceActivity {
                     }
                 });
         }
+        appArea.removePreference(loadApp);
     }
 }

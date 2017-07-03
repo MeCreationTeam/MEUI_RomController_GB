@@ -21,9 +21,9 @@ public final class RoundProgress extends BaseSettings
     }
     
     @Override
-    protected void save(ContentResolver CR, SharedPreferences meui)
+    protected void save()
     {
-        final Map<String,?> mdhp=meui.getAll();
+        final Map<String,?> mdhp=meuiPrefs.getAll();
         for (Map.Entry<String,?> entry:mdhp.entrySet())
         {
             switch (entry.getKey().toString())
@@ -33,19 +33,19 @@ public final class RoundProgress extends BaseSettings
                 case "mdhp_rimWidth":
                 case "mdhp_barColor":
                 case "mdhp_rimColor":
-                    Settings.System.putInt(CR, entry.getKey().toString(), Integer.valueOf(entry.getValue()));
+                    Settings.System.putInt(mResolver, entry.getKey().toString(), Integer.valueOf(entry.getValue()));
                     break;
                 case "mdhp_baseSpinSpeed":
-                    Settings.System.putFloat(CR, entry.getKey().toString(), Float.parseFloat(entry.getValue().toString()) / 1000);
+                    Settings.System.putFloat(mResolver, entry.getKey().toString(), Float.parseFloat(entry.getValue().toString()) / 1000);
                     break;
                 case "mdhp_cycleTime":
-                    Settings.System.putString(CR, entry.getKey().toString(), entry.getValue().toString());
+                    Settings.System.putString(mResolver, entry.getKey().toString(), entry.getValue().toString());
                     break;
                 case "mdhp_linear":
                 case "mdhp_quick":
                 case "mdhp_cache":
                     final CheckBoxPreference cbp=(CheckBoxPreference)findPreference(entry.getKey().toString());
-                    Settings.System.putInt(CR, entry.getKey().toString(), cbp.isChecked() ?1: 0);
+                    Settings.System.putInt(mResolver, entry.getKey().toString(), cbp.isChecked() ?1: 0);
                     break;
                 default:
                     break;

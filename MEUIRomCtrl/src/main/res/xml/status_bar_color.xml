@@ -17,4 +17,7 @@
         android:dialogMessage="默认:3000，单位:毫秒。不建议取值过小！"/>
     <PreferenceCategory
         android:title="单应用设置"/>
+    <Preference
+        android:title="点击加载"
+        android:key="click_to_load"/>
 </PreferenceScreen>

@@ -23,12 +23,12 @@ public final class Screenshot extends BaseSettings
     }
 
     @Override
-    protected void save(ContentResolver CR, SharedPreferences meui)
+    protected void save()
     {
         final EditTextPreference pathEditor=(EditTextPreference)findPreference("ss_path");
-        final String lastValue=Settings.System.getString(CR,"ss_path");
+        final String lastValue=Settings.System.getString(mResolver,"ss_path");
         
-        final Map<String,?> ss=meui.getAll();
+        final Map<String,?> ss=meuiPrefs.getAll();
         for (Map.Entry<String,?> entry:ss.entrySet())
         {
             final String KEY=entry.getKey().toString();
@@ -44,7 +44,7 @@ public final class Screenshot extends BaseSettings
                         final boolean exist=newPathFile.exists();
                         if (!exist) can=newPathFile.mkdirs();
                         newPathFile = null;
-                        if(exist||can)Settings.System.putString(CR,KEY,VALUE);
+                        if(exist||can)Settings.System.putString(mResolver,KEY,VALUE);
                         else{
                             pathEditor.setText(lastValue);
                             Toast.makeText(this,PATH_ERROR, Toast.LENGTH_LONG).show();
@@ -54,19 +54,19 @@ public final class Screenshot extends BaseSettings
                     {
                         Toast.makeText(this, PATH_ERROR, Toast.LENGTH_LONG).show();
                         pathEditor.setText(lastValue);
-                        Settings.System.putString(CR,KEY,lastValue);
+                        Settings.System.putString(mResolver,KEY,lastValue);
                     }
                     break;
                 case "screenshot_format":
-                    Settings.System.putString(CR,KEY,entry.getValue().toString());
+                    Settings.System.putString(mResolver,KEY,entry.getValue().toString());
                     break;
                 case "screenshot_quality":
                 case "screenshot_delay":
-                    Settings.System.putInt(CR, KEY, Integer.valueOf(entry.getValue()));
+                    Settings.System.putInt(mResolver, KEY, Integer.valueOf(entry.getValue()));
                     break;
                 case "share_screenshot":
                     final CheckBoxPreference cbp=(CheckBoxPreference)findPreference(KEY);
-                    Settings.System.putInt(CR, KEY, cbp.isChecked() ?1: 0);
+                    Settings.System.putInt(mResolver, KEY, cbp.isChecked() ?1: 0);
                     break;
                 default:
                     break;
