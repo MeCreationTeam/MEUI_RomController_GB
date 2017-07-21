@@ -2,4 +2,5 @@
 <resources>
     <color name="md_gray">#212121</color>
     <color name="primaryDark">#263238</color>
+    <color name="second_color">#009688</color>
 </resources>
