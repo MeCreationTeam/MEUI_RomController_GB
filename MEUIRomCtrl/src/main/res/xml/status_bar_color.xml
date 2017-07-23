@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:key="app_area"
-	android:title="状态栏颜色">
-	<PreferenceCategory
-		android:title="全局设置"/>
-	<net.margaritov.preference.colorpicker.ColorPickerPreference
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="app_area"
+    android:title="状态栏颜色">
+    <PreferenceCategory
+        android:title="全局设置"/>
+    <net.margaritov.preference.colorpicker.ColorPickerPreference
         android:key="sb_default_color"
         android:defaultValue="0x4D000000"
-		android:title="默认颜色"/>
-	<com.meui.prefs.SeekBarPreference
-		android:title="变色间隔时间"
-		android:key="sb_check_delay"
-		android:defaultValue="3000"
-		android:max="15000"
-		android:dialogMessage="默认:3000，单位:毫秒。不建议取值过小！"/>
-	<PreferenceCategory
-		android:title="单应用设置"/>
+        android:title="默认颜色"/>
+    <com.meui.prefs.SeekBarPreference
+        android:title="变色间隔时间"
+        android:key="sb_check_delay"
+        android:defaultValue="3000"
+        android:max="15000"
+        android:dialogMessage="默认:3000，单位:毫秒。不建议取值过小！"/>
+    <PreferenceCategory
+        android:title="单应用设置"/>
+    <Preference
+        android:title="点击加载"
+        android:key="click_to_load"/>
 </PreferenceScreen>
