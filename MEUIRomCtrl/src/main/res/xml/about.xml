@@ -52,11 +52,18 @@
             android:data="https://github.com/Hongarc/Lunar"/>
     </Preference>
     <Preference
-    android:title="HanziToPinyin">
-    <intent
-        android:action="android.intent.action.VIEW"
-        android:data="http://blog.csdn.net/zhangphil/article/details/47164665"/>
+        android:title="HanziToPinyin">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="http://blog.csdn.net/zhangphil/article/details/47164665"/>
     </Preference>
+    <Preference
+        android:title="SmoothProgressBar">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/castorflex/SmoothProgressBar"/>
+    </Preference>
+    
     <!-- 
     -->
 </PreferenceScreen>

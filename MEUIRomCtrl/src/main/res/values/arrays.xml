@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="screenshot_format">
-    <item>png</item>
-    <item>jpg</item>
+        <item>png</item>
+        <item>jpg</item>
     </string-array>
-    <string-array name="font_sizes">
-        <item>11</item>
-        <item>12</item>
-        <item>13</item>
-        <item>14</item>
-        <item>15</item>
+    
+    <integer-array name="interpolator_value">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </integer-array>
+    <string-array name="interpolator_name">
+        <item>加速</item>
+        <item>线性</item>
+        <item>加速型减速</item>
+        <item>减速</item>
     </string-array>
     
 </resources>

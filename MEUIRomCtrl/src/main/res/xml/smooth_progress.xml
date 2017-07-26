@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="水平进度条">
+
+    <CheckBoxPreference
+        android:title="反转"
+        android:key="spb_reversed"
+        android:defaultValue="false"/>
+    <CheckBoxPreference
+        android:title="镜像"
+        android:key="spb_mirror"
+        android:defaultValue="false"/>
+
+    <com.meui.prefs.SeekBarPreference
+        android:title="色块数量"
+        android:key="spb_sections_count"
+        android:defaultValue="4"
+        android:max="10"
+        android:dialogMessage="默认:4"/>
+    <com.meui.prefs.SeekBarPreference
+        android:title="色块分离宽度"
+        android:key="spb_stroke_separator_length"
+        android:defaultValue="4"
+        android:max="20"
+        android:dialogMessage="默认:4"/>
+    <com.meui.prefs.SeekBarPreference
+        android:key="spb_stroke_width"
+        android:title="色块宽度"
+        android:defaultValue="4"
+        android:dialogMessage="默认:4"
+        android:max="20"/>
+    <com.meui.prefs.SeekBarPreference
+        android:title="速率"
+        android:key="spb_speed"
+        android:defaultValue="1"
+        android:dialogMessage="默认:1"
+        android:max="10"/>
+    <com.meui.prefs.SeekBarPreference
+        android:title="开始速率"
+        android:key="spb_start_speed"
+        android:defaultValue="1"
+        android:dialogMessage="默认:1"
+        android:max="10"/>
+    <com.meui.prefs.SeekBarPreference
+        android:title="停止速率"
+        android:key="spb_stop_speed"
+        android:defaultValue="1"
+        android:dialogMessage="默认:1"
+        android:max="10"/>
+    <ListPreference
+        android:title="插值器"
+        android:key="spb_interpolator"
+        android:entries="@array/interpolator_name"
+        android:entryValues="@array/interpolator_value"/>
+
+    <CheckBoxPreference
+        android:key="spb_gradients"
+        android:title="渐变"
+        android:defaultValue="false"/>
+    <CheckBoxPreference
+        android:key="spb_color_multi"
+        android:title="多色模式"
+        android:defaultValue="false"/>
+    <net.margaritov.preference.colorpicker.ColorPickerPreference
+        android:key="spb_color"
+        android:title="颜色（单一）"
+        android:defaultValue="0xFF009688"
+        alphaSlider="true"/>
+    <com.meui.prefs.MultiColorPreference
+        android:key="spb_color_multi_number"
+        android:title="颜色数量"
+        android:defaultValue="2"
+        android:dialogMessage="默认色数：2，请输入1～15之间的整数作为颜色数，然后选取颜色。"
+        android:dependency="spb_color_multi"/>
+    
+</PreferenceScreen>

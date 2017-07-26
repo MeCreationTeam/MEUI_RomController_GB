@@ -8,11 +8,18 @@
             android:targetClass="com.meui.RomCtrl.Screenshot"/>
     </Preference>
     <Preference
-        android:title="ME圆形进度条">
+        android:title="圆形进度条">
         <intent
             android:targetPackage="com.meui.RomCtrl"
             android:action="android.intent.action.MAIN"
             android:targetClass="com.meui.RomCtrl.RoundProgress"/>
+    </Preference>
+    <Preference
+        android:title="水平进度条">
+        <intent
+            android:targetPackage="com.meui.RomCtrl"
+            android:action="android.intent.action.MAIN"
+            android:targetClass="com.meui.RomCtrl.SmoothProgress"/>
     </Preference>
     <Preference
         android:title="锁屏">
