@@ -8,6 +8,10 @@ public class ColorSetting
         mItemName=itemName;
         mColorValue=colorValue;
     }
+
+    public void setColorValue(int colorValue) {
+        mColorValue = colorValue;
+    }
     public String getItemName() {
         return mItemName;
     }

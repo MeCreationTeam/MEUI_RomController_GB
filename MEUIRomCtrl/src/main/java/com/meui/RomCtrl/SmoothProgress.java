@@ -19,9 +19,8 @@ final public class SmoothProgress extends PreferenceActivity implements Preferen
         addPreferencesFromResource(R.xml.smooth_progress);
         resolver=getContentResolver();
         
-        PreferenceScreen baseScreen=getPreferenceScreen();
-        int prefsCount=baseScreen.getPreferenceCount();
-        for(int now=0;now<prefsCount;now++){
+        final PreferenceScreen baseScreen=getPreferenceScreen();
+        for(int now=0;now<baseScreen.getPreferenceCount();now++){
             baseScreen.getPreference(now).setOnPreferenceChangeListener(this);
         }
         

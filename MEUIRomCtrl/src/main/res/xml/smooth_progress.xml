@@ -67,9 +67,7 @@
         android:defaultValue="0xFF009688"
         alphaSlider="true"/>
     <com.meui.prefs.MultiColorPreference
-        android:key="spb_color_multi_number"
-        android:title="颜色数量"
-        android:defaultValue="2"
+        android:title="多色设置"
         android:dialogMessage="默认色数：2，请输入1～15之间的整数作为颜色数，然后选取颜色。"
         android:dependency="spb_color_multi"/>
     

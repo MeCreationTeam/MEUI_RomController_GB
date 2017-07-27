@@ -12,15 +12,26 @@ public class MultiColorAdapter extends ArrayAdapter<ColorSetting>
         super(context, resId, objects);
         mResId=resId;
     }
-
+    
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // TODO: Implement this method
         ColorSetting colorSetting=getItem(position);
-        View view=LayoutInflater.from(getContext()).inflate(mResId, parent, false);
-        TextView textView=(TextView)view.findViewById(R.id.list_color_name);
-        textView.setText(colorSetting.getItemName());
-        return view;
+        View row;
+        ViewHolder viewHolder;
+        if(convertView == null){
+            row=LayoutInflater.from(getContext()).inflate(mResId, parent, false);
+            viewHolder=new ViewHolder();
+            viewHolder.textView=(TextView)row.findViewById(R.id.list_color_name);
+            row.setTag(R.id.list_color_name, viewHolder);
+            }else{
+                row = convertView;
+                viewHolder=(ViewHolder)row.getTag(R.id.list_color_name);
+            }
+        viewHolder.textView.setText(colorSetting.getItemName());
+        
+        return row;
     }
-    
+    class ViewHolder{
+        TextView textView;
+    }
 }
