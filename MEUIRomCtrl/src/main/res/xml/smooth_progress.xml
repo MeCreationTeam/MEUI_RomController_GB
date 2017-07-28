@@ -51,7 +51,8 @@
         android:title="插值器"
         android:key="spb_interpolator"
         android:entries="@array/interpolator_name"
-        android:entryValues="@array/interpolator_value"/>
+        android:entryValues="@array/interpolator_value"
+        android:defaultValue="1"/>
 
     <CheckBoxPreference
         android:key="spb_gradients"

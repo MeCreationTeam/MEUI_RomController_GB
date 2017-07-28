@@ -34,8 +34,19 @@ final public class SmoothProgress extends PreferenceActivity implements Preferen
         }
         
         switch(p1.getKey()){
-            case "spb_reversed":
-            case "spb_mirror":
+            case "spb_color":
+            case "spb_sections_count":
+            case "spb_stroke_separator_length":
+                Settings.System.putInt(resolver,p1.getKey(),p2);
+                break;
+            case "spb_stroke_width":
+            case "spb_speed":
+            case "spb_start_speed":
+            case "spb_stop_speed":
+                Settings.System.putFloat(resolver, p1.getKey(), Float.parseFloat( String.valueOf( p2)));
+                break;
+            case "spb_interpolator":
+                Settings.System.putInt(resolver, p1.getKey(), Integer.parseInt((String)p2));
         }
         return true;
     }

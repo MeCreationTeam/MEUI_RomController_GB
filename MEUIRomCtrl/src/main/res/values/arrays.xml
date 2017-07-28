@@ -5,12 +5,12 @@
         <item>jpg</item>
     </string-array>
     
-    <integer-array name="interpolator_value">
+    <string-array name="interpolator_value">
         <item>0</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
-    </integer-array>
+    </string-array>
     <string-array name="interpolator_name">
         <item>加速</item>
         <item>线性</item>
