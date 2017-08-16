@@ -21,11 +21,17 @@ public final class MeApp extends Application implements Thread.UncaughtException
 
     @Override
     public void uncaughtException(Thread thread, Throwable ex) {
+        Log.e("MEUI","MEUIRomCtrl:",ex);
+        
         final Intent intent = new Intent(this, Crash.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  
                         Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra("log",ex.toString());
-        Log.w("MEUI",ex);
+
+        String logWrongInfo = "Thread: "+thread.getName() + "\n" + ex.toString();
+        for(StackTraceElement e : ex.getStackTrace()){
+            logWrongInfo += "\n     at " +e.toString();
+        }
+        intent.putExtra("log", logWrongInfo);
         startActivity(intent);
         System.exit(0);
     }

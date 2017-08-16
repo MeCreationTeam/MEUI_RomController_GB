@@ -114,8 +114,8 @@ public final class StatusBarColor extends PreferenceActivity {
                 }
         });
         for (final PackageInfo packageInfo : packages) {
-            
-                final PreferenceScreen info = new PreferenceScreen(StatusBarColor.this,null);
+                // TODO: Only load Preferences when the user click the item, in order to speed it up.
+                final PreferenceScreen info = getPreferenceManager().createPreferenceScreen(StatusBarColor.this);
                 info.setTitle(packageInfo.applicationInfo.loadLabel(pm).toString());
                 info.setSummary(packageInfo.packageName);
                 appArea.addPreference(info);

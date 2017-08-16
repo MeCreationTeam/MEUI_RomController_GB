@@ -5,8 +5,12 @@ import java.util.*;
 import android.view.*;
 import com.meui.RomCtrl.*;
 
-public class MultiColorAdapter extends ArrayAdapter<ColorSetting>
-{
+/**
+ * The adapter for the ListView in dialog. Thanks to the book Android First Line Code.
+ * @author zhaozihanzzh
+ */
+
+public class MultiColorAdapter extends ArrayAdapter<ColorSetting> {
     private int mResId;
     public MultiColorAdapter(Context context, int resId, List<ColorSetting> objects){
         super(context, resId, objects);
@@ -31,6 +35,11 @@ public class MultiColorAdapter extends ArrayAdapter<ColorSetting>
         
         return row;
     }
+    
+    /**
+     * View Holder, used to speed up the ListView. Thanks to the book Android First Line Code.
+     * @author zhaozihanzzh
+     */
     class ViewHolder{
         TextView textView;
     }

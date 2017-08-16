@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:orientation="horizontal">
@@ -7,4 +7,4 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:id="@+id/list_color_name"/>
-</LinearLayout>
+</FrameLayout>
