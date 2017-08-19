@@ -42,11 +42,11 @@
             android:action="android.intent.action.MAIN"
             android:targetClass="com.meui.RomCtrl.About"/>
     </Preference>
-    <!--Preference
+    <Preference
         android:title="BUG测试">
         <intent
             android:targetPackage="com.meui.RomCtrls"
             android:action="android.intent.action.MAIN"
             android:targetClass="com.meui.RomCtrl.buggggg"/>
-    </Preference-->
+    </Preference>
 </PreferenceScreen>

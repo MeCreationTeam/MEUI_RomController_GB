@@ -3,6 +3,7 @@ import android.app.*;
 import android.content.*;
 import android.util.*;
 import com.meui.RomCtrl.*;
+import android.os.*;
 
 /**
  * Application class for catching unexpected exceptions.
@@ -27,11 +28,14 @@ public final class MeApp extends Application implements Thread.UncaughtException
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  
                         Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        String logWrongInfo = "Thread: "+thread.getName() + "\n" + ex.toString();
+        StringBuilder logWrongInfo = new StringBuilder();
+        logWrongInfo.append("Model: " + Build.MODEL + "    SDK: " + Build.VERSION.SDK_INT
+                            + "\n" + "Fingerprint: " + Build.FINGERPRINT
+                            + "\n" + ex.toString());
         for(StackTraceElement e : ex.getStackTrace()){
-            logWrongInfo += "\n     at " +e.toString();
+            logWrongInfo.append("\n     at " +e.toString());
         }
-        intent.putExtra("log", logWrongInfo);
+        intent.putExtra("log", logWrongInfo.toString());
         startActivity(intent);
         System.exit(0);
     }
