@@ -14,51 +14,45 @@ import java.util.*;
  * @author zhaozihanzzh
  */
 
-public final class Screenshot extends BaseSettings
-{
+public final class Screenshot extends BaseSettings {
     private final String PATH_ERROR="截图路径修改无效！";
     @Override
-    protected int getXmlId(){
+    protected int getXmlId() {
         return R.xml.screenshot;
     }
 
     @Override
-    protected void save()
-    {
+    protected void save() {
         final EditTextPreference pathEditor=(EditTextPreference)findPreference("ss_path");
-        final String lastValue=Settings.System.getString(mResolver,"ss_path");
-        
+        final String lastValue=Settings.System.getString(mResolver, "ss_path");
+
         final Map<String,?> ss=meuiPrefs.getAll();
-        for (Map.Entry<String,?> entry:ss.entrySet())
-        {
+        for (Map.Entry<String,?> entry:ss.entrySet()) {
             final String KEY=entry.getKey().toString();
-            switch (KEY)
-            {
+            switch (KEY) {
                 case "ss_path":
                     final String VALUE=entry.getValue().toString();
                     final String newPath=Environment.getExternalStorageDirectory().toString() + "/" + VALUE;
-                    try
-                    {
+                    try {
                         File newPathFile=new File(newPath);
-                        boolean can=false;
+                        boolean canBeCreated=false;
                         final boolean exist=newPathFile.exists();
-                        if (!exist) can=newPathFile.mkdirs();
+                        if (!exist) canBeCreated = newPathFile.mkdirs();
                         newPathFile = null;
-                        if(exist||can)Settings.System.putString(mResolver,KEY,VALUE);
-                        else{
+                        if (exist || canBeCreated) {
+                            Settings.System.putString(mResolver, KEY, VALUE);
+                        } else {
                             pathEditor.setText(lastValue);
-                            Toast.makeText(this,PATH_ERROR, Toast.LENGTH_LONG).show();
+                            Toast.makeText(this, PATH_ERROR, Toast.LENGTH_LONG).show();
                         }
-                    }
-                    catch (Exception e)
-                    {
+                    } catch (Exception e) {
                         Toast.makeText(this, PATH_ERROR, Toast.LENGTH_LONG).show();
                         pathEditor.setText(lastValue);
-                        Settings.System.putString(mResolver,KEY,lastValue);
+                        Settings.System.putString(mResolver, KEY, lastValue);
                     }
                     break;
                 case "screenshot_format":
-                    Settings.System.putString(mResolver,KEY,entry.getValue().toString());
+                    Settings.System.putString(mResolver, KEY, entry.getValue().toString());
                     break;
                 case "screenshot_quality":
                 case "screenshot_delay":

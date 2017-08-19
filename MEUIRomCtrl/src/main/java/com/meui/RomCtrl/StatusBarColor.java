@@ -23,7 +23,7 @@ public final class StatusBarColor extends PreferenceActivity {
     private ContentResolver resolver;
     private boolean isFirst=true;
     private Preference loadApp;
-    private Handler mHandler=new Handler(){
+    private Handler mHandler=new Handler() {
 
         @Override
         public void handleMessage(Message msg) {
@@ -34,13 +34,11 @@ public final class StatusBarColor extends PreferenceActivity {
     };
     
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         resolver=getContentResolver();
         
         addPreferencesFromResource(R.xml.status_bar_color);
-        
         
         final Preference checkDelay=findPreference("sb_check_delay");
         final Preference defaultColor=findPreference("sb_default_color");
@@ -68,8 +66,7 @@ public final class StatusBarColor extends PreferenceActivity {
             }
         });
     }
-    private void addPerAppTint()
-    {
+    private void addPerAppTint() {
         if(!isFirst)return;
         isFirst=false;
         final PreferenceScreen appArea=(PreferenceScreen)findPreference("app_area");
@@ -78,8 +75,7 @@ public final class StatusBarColor extends PreferenceActivity {
         final List<PackageInfo> packages =  pm.getInstalledPackages(0);
         Collections.sort(packages,new Comparator<PackageInfo>(){
                 @Override
-                public int compare(PackageInfo one,PackageInfo another)
-                {
+                public int compare(PackageInfo one,PackageInfo another) {
                     int result=0;
                     final String firstName=one.applicationInfo.loadLabel(pm).toString();
                     final String secondName=another.applicationInfo.loadLabel(pm).toString();
@@ -149,7 +145,7 @@ public final class StatusBarColor extends PreferenceActivity {
                                 }
                             } while (cursor.moveToNext());
                             if(cursor!=null)cursor.close();
-                             if(!exist) resolver.insert(MeProvider.CONTENT_URI,contentValues);
+                            if(!exist) resolver.insert(MeProvider.CONTENT_URI,contentValues);
                         }
                         return true;
                     }

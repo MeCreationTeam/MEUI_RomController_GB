@@ -11,23 +11,18 @@ import java.util.*;
  * @author zhaozihanzzh
  */
 
-public final class Lockscreen extends BaseSettings
-{
-    
+public final class Lockscreen extends BaseSettings {
+
     @Override
-    protected int getXmlId()
-    {
+    protected int getXmlId() {
         return R.xml.lockscreen;
     }
 
     @Override
-    protected void save()
-    {
+    protected void save() {
         final Map<String,?> ls=meuiPrefs.getAll();
-        for (Map.Entry<String,?> entry:ls.entrySet())
-        {
-            switch (entry.getKey().toString())
-            {
+        for (Map.Entry<String,?> entry:ls.entrySet()) {
+            switch (entry.getKey().toString()) {
                 case "ls_lunar_color":
                 case "ls_st24_textcolor":
                     Settings.System.putInt(mResolver, entry.getKey().toString(), Integer.valueOf(entry.getValue()));

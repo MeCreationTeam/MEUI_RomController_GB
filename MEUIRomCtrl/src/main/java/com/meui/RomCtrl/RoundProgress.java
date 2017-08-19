@@ -12,22 +12,17 @@ import java.util.*;
  * @author zhaozihanzzh
  */
 
-public final class RoundProgress extends BaseSettings
-{
+public final class RoundProgress extends BaseSettings {
     @Override
-    protected int getXmlId()
-    {
+    protected int getXmlId() {
         return R.xml.wheel_progress;
     }
-    
+
     @Override
-    protected void save()
-    {
+    protected void save() {
         final Map<String,?> mdhp=meuiPrefs.getAll();
-        for (Map.Entry<String,?> entry:mdhp.entrySet())
-        {
-            switch (entry.getKey().toString())
-            {
+        for (Map.Entry<String,?> entry:mdhp.entrySet()) {
+            switch (entry.getKey().toString()) {
                 case "mdhp_circleRadius":
                 case "mdhp_barWidth":
                 case "mdhp_rimWidth":
