@@ -69,7 +69,7 @@
         alphaSlider="true"/>
     <com.meui.prefs.MultiColorPanel.MultiColorPreference
         android:title="多色设置"
-        android:dialogMessage="侧滑可删除或排序。"
+        android:dialogMessage="长按某项可将其删除。"
         android:dependency="spb_color_multi"/>
     
 </PreferenceScreen>

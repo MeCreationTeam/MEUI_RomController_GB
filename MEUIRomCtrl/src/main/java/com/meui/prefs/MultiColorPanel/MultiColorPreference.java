@@ -42,7 +42,7 @@ public class MultiColorPreference extends DialogPreference {
                        if(mColors.size() < lastColorCount){
                            for(int i2 = mColors.size() + 1; i2 <= lastColorCount; i2++){
                                sp.remove("spb_color_multi_value_"+ i2);
-                               Log.d("MEUI","Remove spb_color_multi_value_"+ i2+1);
+                               Log.d("MEUI","Remove spb_color_multi_value_"+ i2);
                            }
                        }
                        // Put color values and build result string.

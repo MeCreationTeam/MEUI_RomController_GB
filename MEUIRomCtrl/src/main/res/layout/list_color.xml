@@ -6,5 +6,7 @@
         android:textAppearance="@*android:style/TextAppearance.Large"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:id="@+id/list_color_name"/>
+        android:id="@+id/list_color_name"
+        android:layout_marginLeft="?android:attr/listPreferredItemPaddingLeft"
+        android:layout_marginStart="?android:attr/listPreferredItemPaddingStart"/>
 </FrameLayout>

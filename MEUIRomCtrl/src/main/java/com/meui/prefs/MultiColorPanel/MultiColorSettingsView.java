@@ -8,6 +8,7 @@ import com.meui.prefs.MultiColorPanel.*;
 import java.util.*;
 import net.margaritov.preference.colorpicker.*;
 import android.content.res.*;
+import android.util.*;
 
 /**
  * The LinearLayout in dialog, controls items directly.
@@ -62,7 +63,7 @@ public class MultiColorSettingsView extends LinearLayout {
             // Delete action will take place when color count is more than one.
             @Override
             public boolean onItemLongClick(AdapterView<?> p1, View p2, final int p3, long p4) {
-                if(mColors.size() > 1) {
+                if(p3 != 0 && mColors.size() > 1) {
                     mColors.remove(p3-1);
                     refreshItemName();
                     adapter.notifyDataSetChanged();
