@@ -25,14 +25,13 @@ public final class StatusBarColor extends PreferenceActivity {
     private boolean isFirst=true;
     private Preference loadApp;
     private Handler mHandler=new Handler() {
-
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             addPerAppTint();
         }
     };
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,27 +65,15 @@ public final class StatusBarColor extends PreferenceActivity {
                 }
             });
     }
-
     private void addPerAppTint() {
         if (!isFirst)return;
         isFirst = false;
         final PreferenceScreen appArea=(PreferenceScreen)findPreference("app_area");
         final PackageManager pm = getPackageManager();
         // Return a List of all packages that are installed on the device.
-        List<PackageInfo> packages =  pm.getInstalledPackages(0);
-        Collections.sort(packages, new Comparator<PackageInfo>(){
-                @Override
-                public int compare(PackageInfo one, PackageInfo another) {
-                    String firstName=one.applicationInfo.loadLabel(pm).toString();
-                    String secondName=another.applicationInfo.loadLabel(pm).toString();
-                    int result = Collator.getInstance().compare(firstName, secondName);
-                    if(result == 0){
-                        result = Collator.getInstance().compare(one.packageName, another.packageName);
-                    }
-                    return result;
-                    // Avoid using HanziToPinyin, thank @Brevent.
-                }
-            });
+        
+        final List<PackageInfo> packages = pm.getInstalledPackages(0);
+        Collections.sort(packages, new CompareByName(pm));
 
         for (final PackageInfo packageInfo : packages) {
             // TODO: Only load Preferences when the user click the item, in order to speed it up.
@@ -131,9 +118,9 @@ public final class StatusBarColor extends PreferenceActivity {
                                     break;
                                 }
                             } while (cursor.moveToNext());
-                            if (cursor != null)cursor.close();
                             if (!exist) resolver.insert(MeProvider.CONTENT_URI, contentValues);
                         }
+                        if (cursor != null)cursor.close();
                         return true;
                     }
                 });
@@ -142,7 +129,6 @@ public final class StatusBarColor extends PreferenceActivity {
                     @Override
                     public boolean onPreferenceChange(Preference preference, Object values) {
                         final Cursor cursor=resolver.query(MeProvider.CONTENT_URI, null, null, null, null);
-
                         cursor.moveToFirst();
                         do {
                             if (packageInfo.packageName.equals(cursor.getString(cursor.getColumnIndex("packageName")))) {
@@ -158,7 +144,25 @@ public final class StatusBarColor extends PreferenceActivity {
                         return true;
                     }
                 });
-
-            appArea.removePreference(loadApp);
         }
-    }}
+            appArea.removePreference(loadApp);
+    }
+    static class CompareByName implements Comparator<PackageInfo> {
+        private PackageManager pm;
+        public CompareByName(PackageManager mPm){
+            pm = mPm;
+        }
+        @Override
+        public int compare(PackageInfo one, PackageInfo another) {
+
+            String firstName = one.applicationInfo.loadLabel(pm).toString();
+            String secondName = another.applicationInfo.loadLabel(pm).toString();
+            int result = Collator.getInstance().compare(firstName, secondName);
+            if(result == 0){
+                result = Collator.getInstance().compare(one.packageName, another.packageName);
+            }
+            return result;
+            // Avoid using HanziToPinyin, thank @Brevent.
+        }
+    }
+}
