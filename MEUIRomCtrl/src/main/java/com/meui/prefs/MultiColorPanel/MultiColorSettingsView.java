@@ -1,14 +1,12 @@
 package com.meui.prefs.MultiColorPanel;
 import android.content.*;
 import android.preference.*;
+import android.util.*;
 import android.view.*;
 import android.widget.*;
 import com.meui.RomCtrl.*;
-import com.meui.prefs.MultiColorPanel.*;
 import java.util.*;
 import net.margaritov.preference.colorpicker.*;
-import android.content.res.*;
-import android.util.*;
 
 /**
  * The LinearLayout in dialog, controls items directly.
@@ -28,10 +26,15 @@ public class MultiColorSettingsView extends LinearLayout {
         final ListView listView = new ListView(con);
         final TextView addText= new TextView(con);
         addText.setText("添加颜色");
+        addText.setTextAppearance(con, android.R.style.TextAppearance_Medium);
+        
+        TypedValue value =  new TypedValue();
+        con.getTheme().resolveAttribute(android.R.attr.listPreferredItemPaddingLeft, value, true);
+        int paddingLeft = value.complexToDimensionPixelOffset(value.data, getResources().getDisplayMetrics());
+        addText.setPadding(paddingLeft, addText.getPaddingTop(), addText.getPaddingRight(), addText.getPaddingBottom()); 
         listView.addHeaderView(addText);
 
         final MultiColorAdapter adapter = new MultiColorAdapter(con, R.layout.list_color, mColors);
-
         listView.setAdapter(adapter);
         addView(listView, params);
         

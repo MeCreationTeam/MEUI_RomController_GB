@@ -11,10 +11,11 @@ import net.margaritov.preference.colorpicker.*;
 import android.widget.*;
 import android.view.*;
 import java.text.*;
+import android.app.*;
 
 /**
  * The Preference Activity of Status Bar Color.
- * http://m.2cto.com/kf/201504/387107.html
+ * http://www.2cto.com/kf/201504/387107.html
  * https://m.runoob.com/sqlite/sqlite-update.html
  * http://stackoverflow.com/questions/12710292/sorting-list-in-alphabetical-order
  * @author zhaozihanzzh
@@ -22,15 +23,7 @@ import java.text.*;
 
 public final class StatusBarColor extends PreferenceActivity {
     private ContentResolver resolver;
-    private boolean isFirst=true;
     private Preference loadApp;
-    private Handler mHandler=new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            addPerAppTint();
-        }
-    };
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,16 +52,47 @@ public final class StatusBarColor extends PreferenceActivity {
         loadApp.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener(){
                 @Override
                 public boolean onPreferenceClick(Preference p1) {
-                    p1.setTitle("正在加载……");
-                    mHandler.sendEmptyMessage(0);
+                    
+                    new LoadAppsTask().execute();
                     return true;
                 }
             });
     }
+
+    /**
+     * This inner class is used to load PreferenceScreens of applications in a new thread.
+     * Thank the book Android First Line Code.
+     * @author zhaozihanzzh
+     */
+
+    private final class LoadAppsTask extends AsyncTask<Void, Integer, Void> {
+        private ProgressDialog mDialog;
+        
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mDialog = new ProgressDialog(StatusBarColor.this);
+            mDialog.setCancelable(false);
+            mDialog.setMessage("正在加载……");
+            mDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void[] p1) {
+            addPerAppTint();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            mDialog.dismiss();
+        }
+    }
+    
     private void addPerAppTint() {
-        if (!isFirst)return;
-        isFirst = false;
         final PreferenceScreen appArea=(PreferenceScreen)findPreference("app_area");
+        appArea.removePreference(loadApp);
         final PackageManager pm = getPackageManager();
         // Return a List of all packages that are installed on the device.
         
@@ -76,7 +100,6 @@ public final class StatusBarColor extends PreferenceActivity {
         Collections.sort(packages, new CompareByName(pm));
 
         for (final PackageInfo packageInfo : packages) {
-            // TODO: Only load Preferences when the user click the item, in order to speed it up.
             final PreferenceScreen info = getPreferenceManager().createPreferenceScreen(StatusBarColor.this);
             info.setTitle(packageInfo.applicationInfo.loadLabel(pm).toString());
             info.setSummary(packageInfo.packageName);
@@ -147,14 +170,20 @@ public final class StatusBarColor extends PreferenceActivity {
         }
             appArea.removePreference(loadApp);
     }
+    
+    /**
+     * I get this method from Brevent app, thank @Brevent.
+     * @author zhaozihanzzh
+     */
+     
     static class CompareByName implements Comparator<PackageInfo> {
         private PackageManager pm;
         public CompareByName(PackageManager mPm){
             pm = mPm;
         }
+
         @Override
         public int compare(PackageInfo one, PackageInfo another) {
-
             String firstName = one.applicationInfo.loadLabel(pm).toString();
             String secondName = another.applicationInfo.loadLabel(pm).toString();
             int result = Collator.getInstance().compare(firstName, secondName);
@@ -162,7 +191,7 @@ public final class StatusBarColor extends PreferenceActivity {
                 result = Collator.getInstance().compare(one.packageName, another.packageName);
             }
             return result;
-            // Avoid using HanziToPinyin, thank @Brevent.
+            // Use Collator instead of using HanziToPinyin, thank @Brevent.
         }
     }
 }
