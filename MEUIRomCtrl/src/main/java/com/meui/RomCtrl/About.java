@@ -9,26 +9,20 @@ import android.util.*;
  * @author zhaozihanzzh
  */
 
-public class About extends PreferenceActivity
-{
+public final class About extends PreferenceActivity {
     @Override
-    protected void onCreate(Bundle savedInstanceState) 
-    {
+    protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.about);
-        final Preference sendMap=findPreference("send_map");
+        final Preference sendMap = findPreference("send_map");
         sendMap.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener(){
                 @Override
                 public boolean onPreferenceClick(Preference p1) {
-                    if (p1.getSummary() == null)
-                    {
+                    if (p1.getSummary() == null) {
                         p1.setTitle("隐藏Map");
-                        final String meui=getPreferenceManager().getSharedPreferences().getAll().toString();
-                        Log.d("MEUI", meui);
+                        final String meui = getPreferenceManager().getSharedPreferences().getAll().toString();
                         p1.setSummary(meui);
-                    }
-                    else
-                    {
+                    } else {
                         p1.setTitle("显示Map");
                         p1.setSummary(null);
                     }

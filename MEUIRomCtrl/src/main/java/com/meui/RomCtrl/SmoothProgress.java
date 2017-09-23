@@ -19,11 +19,11 @@ final public class SmoothProgress extends PreferenceActivity implements Preferen
         resolver = getContentResolver();
 
         final PreferenceScreen baseScreen=getPreferenceScreen();
-        for (int now=0;now < baseScreen.getPreferenceCount();now++) {
+        for (int now=0; now < baseScreen.getPreferenceCount(); now++) {
             baseScreen.getPreference(now).setOnPreferenceChangeListener(this);
         }
-
     }
+
     @Override
     public boolean onPreferenceChange(Preference p1, Object p2) {
         if (p1 instanceof CheckBoxPreference) {
@@ -49,5 +49,4 @@ final public class SmoothProgress extends PreferenceActivity implements Preferen
         }
         return true;
     }
-
 }

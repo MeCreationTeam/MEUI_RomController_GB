@@ -25,7 +25,14 @@ abstract public class BaseSettings extends PreferenceActivity {
                 }
             });
     }
+    /**
+     * This abstract method is used to get the xml id of preference.
+     * @return The id of xml file.
+     */
     abstract protected int getXmlId();
+    /**
+     * This abstract method will be called when the SharedPreference changes.
+     */
     abstract protected void save();
     private final SharedPreferences.OnSharedPreferenceChangeListener mListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
         @Override

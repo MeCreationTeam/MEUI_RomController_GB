@@ -15,7 +15,7 @@ import java.util.*;
  */
 
 public final class Screenshot extends BaseSettings {
-    private final String PATH_ERROR="截图路径修改无效！";
+    private final String PATH_ERROR="截图路径修改失败。";
     @Override
     protected int getXmlId() {
         return R.xml.screenshot;
@@ -46,6 +46,7 @@ public final class Screenshot extends BaseSettings {
                             Toast.makeText(this, PATH_ERROR, Toast.LENGTH_LONG).show();
                         }
                     } catch (Exception e) {
+                        Log.e("MEUI", "Unable to create screenshot path: " + e);
                         Toast.makeText(this, PATH_ERROR, Toast.LENGTH_LONG).show();
                         pathEditor.setText(lastValue);
                         Settings.System.putString(mResolver, KEY, lastValue);

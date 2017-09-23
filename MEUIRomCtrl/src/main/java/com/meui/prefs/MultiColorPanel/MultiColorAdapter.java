@@ -10,7 +10,7 @@ import com.meui.RomCtrl.*;
  * @author zhaozihanzzh
  */
 
-public class MultiColorAdapter extends ArrayAdapter<ColorSetting> {
+public final class MultiColorAdapter extends ArrayAdapter<ColorSetting> {
     private int mResId;
     public MultiColorAdapter(Context context, int resId, List<ColorSetting> objects){
         super(context, resId, objects);

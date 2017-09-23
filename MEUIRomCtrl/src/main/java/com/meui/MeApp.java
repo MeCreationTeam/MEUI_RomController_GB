@@ -23,7 +23,6 @@ public final class MeApp extends Application implements Thread.UncaughtException
     @Override
     public void uncaughtException(Thread thread, Throwable ex) {
         Log.e("MEUI","MEUIRomCtrl:",ex);
-        
         final Intent intent = new Intent(this, Crash.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  
                         Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -37,6 +36,7 @@ public final class MeApp extends Application implements Thread.UncaughtException
         }
         intent.putExtra("log", logWrongInfo.toString());
         startActivity(intent);
-        System.exit(0);
+        android.os.Process.killProcess(android.os.Process.myPid());
+        // System.exit() or killProcess() is necessary here.
     }
- }
+}

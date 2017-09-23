@@ -13,7 +13,7 @@ import net.margaritov.preference.colorpicker.*;
  * @author zhaozihanzzh
  */
 
-public class MultiColorSettingsView extends LinearLayout {
+public final class MultiColorSettingsView extends LinearLayout {
     private List<ColorSetting> mColors = new ArrayList<>();
     private PreferenceActivity mActivity;
     public MultiColorSettingsView(Context con) {
