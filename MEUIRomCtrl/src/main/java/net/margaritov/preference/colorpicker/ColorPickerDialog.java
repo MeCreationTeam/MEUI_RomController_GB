@@ -77,7 +77,7 @@ public class ColorPickerDialog extends Dialog implements
 
     private void setUp(int color) {
 
-        final LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         mLayout = inflater.inflate(R.layout.dialog_color_picker, null);
         mLayout.getViewTreeObserver().addOnGlobalLayoutListener(this);
@@ -100,12 +100,12 @@ public class ColorPickerDialog extends Dialog implements
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    final InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                    final String s = mHexVal.getText().toString();
+                    String s = mHexVal.getText().toString();
                     if (s.length() > 5 || s.length() < 10) {
                         try {
-                            final int c = ColorPickerPreference.convertToColorInt(s.toString());
+                            int c = ColorPickerPreference.convertToColorInt(s.toString());
                             mColorPicker.setColor(c, true);
                             mHexVal.setTextColor(mHexDefaultTextColor);
                         } catch (IllegalArgumentException e) {
@@ -217,7 +217,7 @@ public class ColorPickerDialog extends Dialog implements
 
     @Override
     public Bundle onSaveInstanceState() {
-        final Bundle state = super.onSaveInstanceState();
+        Bundle state = super.onSaveInstanceState();
         state.putInt("old_color", mOldColor.getColor());
         state.putInt("new_color", mNewColor.getColor());
         return state;

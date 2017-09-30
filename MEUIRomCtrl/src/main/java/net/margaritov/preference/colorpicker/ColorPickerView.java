@@ -195,7 +195,7 @@ public class ColorPickerView extends View {
 
     private int[] buildHueColorArray() {
 
-        final int[] hue = new int[361];
+        int[] hue = new int[361];
 
         int count = 0;
         for (int i = hue.length - 1; i >= 0; i--, count++) {
@@ -231,16 +231,16 @@ public class ColorPickerView extends View {
                     0xffffffff, 0xff000000, TileMode.CLAMP);
         }
 
-        final int rgb = Color.HSVToColor(new float[]{mHue, 1f, 1f});
+        int rgb = Color.HSVToColor(new float[]{mHue, 1f, 1f});
 
         mSatShader = new LinearGradient(rect.left, rect.top, rect.right, rect.top,
                 0xffffffff, rgb, TileMode.CLAMP);
-        final ComposeShader mShader = new ComposeShader(mValShader, mSatShader, PorterDuff.Mode.MULTIPLY);
+        ComposeShader mShader = new ComposeShader(mValShader, mSatShader, PorterDuff.Mode.MULTIPLY);
         mSatValPaint.setShader(mShader);
 
         canvas.drawRect(rect, mSatValPaint);
 
-        final Point p = satValToPoint(mSat, mVal);
+        Point p = satValToPoint(mSat, mVal);
 
         mSatValTrackerPaint.setColor(0xff000000);
         canvas.drawCircle(p.x, p.y, PALETTE_CIRCLE_TRACKER_RADIUS - 1f * mDensity, mSatValTrackerPaint);
@@ -270,11 +270,11 @@ public class ColorPickerView extends View {
 
         canvas.drawRect(rect, mHuePaint);
 
-        final float rectHeight = 4 * mDensity / 2;
+        float rectHeight = 4 * mDensity / 2;
 
-        final Point p = hueToPoint(mHue);
+        Point p = hueToPoint(mHue);
 
-        final RectF r = new RectF();
+        RectF r = new RectF();
         r.left = rect.left - RECTANGLE_TRACKER_OFFSET;
         r.right = rect.right + RECTANGLE_TRACKER_OFFSET;
         r.top = p.y - rectHeight;
@@ -303,9 +303,9 @@ public class ColorPickerView extends View {
 
         mAlphaPattern.draw(canvas);
 
-        final float[] hsv = new float[]{mHue, mSat, mVal};
-        final int color = Color.HSVToColor(hsv);
-        final int acolor = Color.HSVToColor(0, hsv);
+        float[] hsv = new float[]{mHue, mSat, mVal};
+        int color = Color.HSVToColor(hsv);
+        int acolor = Color.HSVToColor(0, hsv);
 
         mAlphaShader = new LinearGradient(rect.left, rect.top, rect.right, rect.top,
                 color, acolor, TileMode.CLAMP);
@@ -319,11 +319,11 @@ public class ColorPickerView extends View {
             canvas.drawText(mAlphaSliderText, rect.centerX(), rect.centerY() + 4 * mDensity, mAlphaTextPaint);
         }
 
-        final float rectWidth = 4 * mDensity / 2;
+        float rectWidth = 4 * mDensity / 2;
 
-        final Point p = alphaToPoint(mAlpha);
+        Point p = alphaToPoint(mAlpha);
 
-        final RectF r = new RectF();
+        RectF r = new RectF();
         r.left = p.x - rectWidth;
         r.right = p.x + rectWidth;
         r.top = rect.top - RECTANGLE_TRACKER_OFFSET;
@@ -339,7 +339,7 @@ public class ColorPickerView extends View {
         final RectF rect = mHueRect;
         final float height = rect.height();
 
-        final Point p = new Point();
+        Point p = new Point();
 
         p.y = (int) (height - (hue * height / 360f) + rect.top);
         p.x = (int) rect.left;
@@ -353,7 +353,7 @@ public class ColorPickerView extends View {
         final float height = rect.height();
         final float width = rect.width();
 
-        final Point p = new Point();
+        Point p = new Point();
 
         p.x = (int) (sat * width + rect.left);
         p.y = (int) ((1f - val) * height + rect.top);
@@ -366,7 +366,7 @@ public class ColorPickerView extends View {
         final RectF rect = mAlphaRect;
         final float width = rect.width();
 
-        final Point p = new Point();
+        Point p = new Point();
 
         p.x = (int) (width - (alpha * width / 0xff) + rect.left);
         p.y = (int) rect.top;
@@ -378,10 +378,10 @@ public class ColorPickerView extends View {
     private float[] pointToSatVal(float x, float y) {
 
         final RectF rect = mSatValRect;
-        final float[] result = new float[2];
+        float[] result = new float[2];
 
-        final float width = rect.width();
-        final float height = rect.height();
+        float width = rect.width();
+        float height = rect.height();
 
         if (x < rect.left) {
             x = 0f;
@@ -410,7 +410,7 @@ public class ColorPickerView extends View {
 
         final RectF rect = mHueRect;
 
-        final float height = rect.height();
+        float height = rect.height();
 
         if (y < rect.top) {
             y = 0f;
@@ -444,8 +444,8 @@ public class ColorPickerView extends View {
     @Override
     public boolean onTrackballEvent(MotionEvent event) {
 
-        final float x = event.getX();
-        final float y = event.getY();
+        float x = event.getX();
+        float y = event.getY();
 
         boolean update = false;
 
@@ -575,8 +575,8 @@ public class ColorPickerView extends View {
         if (mStartTouchPoint == null) return false;
 
         boolean update = false;
-        final int startX = mStartTouchPoint.x;
-        final int startY = mStartTouchPoint.y;
+        int startX = mStartTouchPoint.x;
+        int startY = mStartTouchPoint.y;
 
         if (mHueRect.contains(startX, startY)) {
             mLastTouchedPanel = PANEL_HUE;
@@ -588,7 +588,7 @@ public class ColorPickerView extends View {
 
             mLastTouchedPanel = PANEL_SAT_VAL;
 
-            final float[] result = pointToSatVal(event.getX(), event.getY());
+            float[] result = pointToSatVal(event.getX(), event.getY());
 
             mSat = result[0];
             mVal = result[1];
@@ -612,8 +612,8 @@ public class ColorPickerView extends View {
         int width = 0;
         int height = 0;
 
-        final int widthMode = MeasureSpec.getMode(widthMeasureSpec);
-        final int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
 
         int widthAllowed = MeasureSpec.getSize(widthMeasureSpec);
         int heightAllowed = MeasureSpec.getSize(heightMeasureSpec);
@@ -713,10 +713,10 @@ public class ColorPickerView extends View {
             panelSide -= PANEL_SPACING + ALPHA_PANEL_HEIGHT;
         }
 
-        final float left = dRect.left + BORDER_WIDTH_PX;
-        final float top = dRect.top + BORDER_WIDTH_PX;
-        final float bottom = top + panelSide;
-        final float right = left + panelSide;
+        float left = dRect.left + BORDER_WIDTH_PX;
+        float top = dRect.top + BORDER_WIDTH_PX;
+        float bottom = top + panelSide;
+        float right = left + panelSide;
 
         mSatValRect = new RectF(left, top, right, bottom);
     }
@@ -724,10 +724,10 @@ public class ColorPickerView extends View {
     private void setUpHueRect() {
         final RectF dRect = mDrawingRect;
 
-        final float left = dRect.right - HUE_PANEL_WIDTH + BORDER_WIDTH_PX;
-        final float top = dRect.top + BORDER_WIDTH_PX;
-        final float bottom = dRect.bottom - BORDER_WIDTH_PX - (mShowAlphaPanel ? (PANEL_SPACING + ALPHA_PANEL_HEIGHT) : 0);
-        final float right = dRect.right - BORDER_WIDTH_PX;
+        float left = dRect.right - HUE_PANEL_WIDTH + BORDER_WIDTH_PX;
+        float top = dRect.top + BORDER_WIDTH_PX;
+        float bottom = dRect.bottom - BORDER_WIDTH_PX - (mShowAlphaPanel ? (PANEL_SPACING + ALPHA_PANEL_HEIGHT) : 0);
+        float right = dRect.right - BORDER_WIDTH_PX;
 
         mHueRect = new RectF(left, top, right, bottom);
     }
@@ -738,10 +738,10 @@ public class ColorPickerView extends View {
 
         final RectF dRect = mDrawingRect;
 
-        final float left = dRect.left + BORDER_WIDTH_PX;
-        final float top = dRect.bottom - ALPHA_PANEL_HEIGHT + BORDER_WIDTH_PX;
-        final float bottom = dRect.bottom - BORDER_WIDTH_PX;
-        final float right = dRect.right - BORDER_WIDTH_PX;
+        float left = dRect.left + BORDER_WIDTH_PX;
+        float top = dRect.bottom - ALPHA_PANEL_HEIGHT + BORDER_WIDTH_PX;
+        float bottom = dRect.bottom - BORDER_WIDTH_PX;
+        float right = dRect.right - BORDER_WIDTH_PX;
 
         mAlphaRect = new RectF(left, top, right, bottom);
 
@@ -810,8 +810,8 @@ public class ColorPickerView extends View {
      */
     public void setColor(int color, boolean callback) {
 
-        final int alpha = Color.alpha(color);
-        final float[] hsv = new float[3];
+        int alpha = Color.alpha(color);
+        float[] hsv = new float[3];
 
         Color.colorToHSV(color, hsv);
 
@@ -889,7 +889,7 @@ public class ColorPickerView extends View {
      * @param res string resource id.
      */
     /*public void setAlphaSliderText(int res) {
-        final String text = getContext().getString(res);
+        String text = getContext().getString(res);
         setAlphaSliderText(text);
     }*/
 

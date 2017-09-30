@@ -117,10 +117,10 @@ public class ColorPickerPanelView extends View {
     private void setUpColorRect() {
         final RectF dRect = mDrawingRect;
 
-        final float left = dRect.left + BORDER_WIDTH_PX;
-        final float top = dRect.top + BORDER_WIDTH_PX;
-        final float bottom = dRect.bottom - BORDER_WIDTH_PX;
-        final float right = dRect.right - BORDER_WIDTH_PX;
+        float left = dRect.left + BORDER_WIDTH_PX;
+        float top = dRect.top + BORDER_WIDTH_PX;
+        float bottom = dRect.bottom - BORDER_WIDTH_PX;
+        float right = dRect.right - BORDER_WIDTH_PX;
 
         mColorRect = new RectF(left, top, right, bottom);
 
