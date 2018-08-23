@@ -19,32 +19,29 @@ public final class RoundProgress extends BaseSettings {
     }
 
     @Override
-    protected void save() {
-        final Map<String,?> mdhp=meuiPrefs.getAll();
-        for (Map.Entry<String,?> entry:mdhp.entrySet()) {
-            switch (entry.getKey().toString()) {
+    protected void save(String changedKey) {
+            switch (changedKey) {
                 case "mdhp_circleRadius":
                 case "mdhp_barWidth":
                 case "mdhp_rimWidth":
                 case "mdhp_barColor":
                 case "mdhp_rimColor":
-                    Settings.System.putInt(mResolver, entry.getKey().toString(), Integer.valueOf(entry.getValue()));
+                    Settings.System.putInt(mResolver, changedKey, getPreferenceManager().getSharedPreferences().getInt(changedKey, 0));
                     break;
                 case "mdhp_baseSpinSpeed":
-                    Settings.System.putFloat(mResolver, entry.getKey().toString(), Float.parseFloat(entry.getValue().toString()) / 1000);
+                    Settings.System.putFloat(mResolver, changedKey,getPreferenceManager().getSharedPreferences().getFloat(changedKey, 0) / 1000);
                     break;
                 case "mdhp_cycleTime":
-                    Settings.System.putString(mResolver, entry.getKey().toString(), entry.getValue().toString());
+                    Settings.System.putString(mResolver, changedKey, getPreferenceManager().getSharedPreferences().getString(changedKey, "460"));
                     break;
                 case "mdhp_linear":
                 case "mdhp_quick":
                 case "mdhp_cache":
-                    final CheckBoxPreference cbp=(CheckBoxPreference)findPreference(entry.getKey().toString());
-                    Settings.System.putInt(mResolver, entry.getKey().toString(), cbp.isChecked() ?1: 0);
+                    Settings.System.putInt(mResolver, changedKey, getPreferenceManager().getSharedPreferences().getBoolean(changedKey, false) ?1: 0);
                     break;
                 default:
                     break;
             }
-        }
+        
     }
 }

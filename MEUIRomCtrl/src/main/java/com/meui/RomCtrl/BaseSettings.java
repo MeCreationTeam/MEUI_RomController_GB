@@ -9,21 +9,12 @@ import android.content.*;
  */
 
 abstract public class BaseSettings extends PreferenceActivity {
-    protected SharedPreferences meuiPrefs;
     protected ContentResolver mResolver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(getXmlId());
-
         mResolver = getContentResolver();
-        meuiPrefs = getPreferenceManager().getSharedPreferences();
-        meuiPrefs.registerOnSharedPreferenceChangeListener(new SharedPreferences. OnSharedPreferenceChangeListener(){
-                @Override
-                public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-                    save();
-                }
-            });
     }
     /**
      * This abstract method is used to get the xml id of preference.
@@ -33,11 +24,11 @@ abstract public class BaseSettings extends PreferenceActivity {
     /**
      * This abstract method will be called when the SharedPreference changes.
      */
-    abstract protected void save();
+    abstract protected void save(String key);
     private final SharedPreferences.OnSharedPreferenceChangeListener mListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            save();
+            save(key);
         }
     };
     @Override

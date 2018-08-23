@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="锁屏设置">
+	<CheckBoxPreference
+		android:title="CRT 开屏特效"
+		android:key="config_beam_screen_on"/>
+	<CheckBoxPreference
+		android:title="CRT 关屏特效"
+		android:key="config_beam_screen_off"/>
     <CheckBoxPreference
         android:title="显示农历"
         android:key="ls_lunar"
