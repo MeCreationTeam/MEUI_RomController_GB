@@ -5,19 +5,30 @@ import android.provider.*;
 import android.util.*;
 import android.widget.*;
 import java.util.*;
+import android.os.*;
 
 /**
  * This is used to control something in lockscreen.
  * @author zhaozihanzzh
  */
 
-public final class Lockscreen extends BaseSettings {
+public final class Lockscreen extends PreferenceActivity implements CheckBoxPreference.OnPreferenceChangeListener{
 
-    @Override
-    protected int getXmlId() {
-        return R.xml.lockscreen;
-    }
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		addPreferencesFromResource(R.xml.lockscreen);
+		findPreference("config_beam_screen_on").setOnPreferenceChangeListener(this);
+		findPreference("config_beam_screen_off").setOnPreferenceChangeListener(this);
+	}
 
+	@Override
+	public boolean onPreferenceChange(Preference p1, Object p2) {
+		Settings.System.putInt(getContentResolver(), p1.getKey(), ((CheckBoxPreference) p1).isChecked() ? 0 : 1);
+		return true;
+	}
+
+/*
     @Override
     protected void save(String changedKey) {
 		switch (changedKey) {
@@ -36,6 +47,6 @@ public final class Lockscreen extends BaseSettings {
 			default:
 				break;
 		}
-	}
+	}*/
 
 }

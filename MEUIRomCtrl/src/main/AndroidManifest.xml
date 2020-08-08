@@ -31,17 +31,24 @@
             android:name=".StatusBarColor"/>
         <activity
             android:name=".SmoothProgress"/>
+		<activity
+            android:name=".RecentDialog"/>
 
         <provider    
             android:authorities="com.meui.RomCtrl"  
             android:name="com.meui.MeProvider"
             android:exported="true"
             android:readPermission="com.meui.RomCtrl.READ"/>
+		<provider
+			android:authorities="com.meui.settings"
+			android:name="com.meui.SettingsProvider"
+			android:exported="true"/>
     </application>
     
     
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <permission android:name="com.meui.RomCtrl.READ" android:protectionLevel="normal"/>
 </manifest>

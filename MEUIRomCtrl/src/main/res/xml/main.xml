@@ -35,6 +35,13 @@
             android:action="android.intent.action.MAIN"
             android:targetClass="com.meui.RomCtrl.StatusBarColor"/>
     </Preference>
+	<Preference
+        android:title="最近任务">
+        <intent
+            android:targetPackage="com.meui.RomCtrl"
+            android:action="android.intent.action.MAIN"
+            android:targetClass="com.meui.RomCtrl.RecentDialog"/>
+    </Preference>
     <Preference
         android:title="关于">
         <intent

@@ -1,10 +1,10 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    android:title="MEUI截图设置">
+    android:title="屏幕截图">
     <EditTextPreference
-        android:title="截图路径"
-        android:key="ss_path"
-        android:dialogMessage="请输入路径中/mnt/sdcard/后面的部分。\n默认：DCIM/Screenshots\n输入的非法字符会被自动忽略。"
-        android:defaultValue="DCIM/Screenshots"/>
+        android:title="保存路径"
+        android:key="screenshot_path"
+        android:dialogMessage="默认：/mnt/sdcard/Pictures/Screenshots"
+        android:defaultValue="/mnt/sdcard/Pictures/Screenshots"/>
     <CheckBoxPreference
         android:title="截图后弹出分享菜单"
         android:key="share_screenshot"/>
@@ -13,11 +13,11 @@
         android:key="screenshot_quality"
         android:defaultValue="100"
         android:max="100"
-        android:dialogMessage="选择图像保存的质量。默认:100"/>
+        android:dialogMessage="默认：100"/>
     <ListPreference
         android:title="截图格式"
         android:key="screenshot_format"
-        android:dialogTitle="选择截图格式"
+        android:dialogTitle="默认：png"
         android:entryValues="@array/screenshot_format"
         android:defaultValue="png"
         android:entries="@array/screenshot_format"/>
@@ -26,5 +26,5 @@
         android:key="screenshot_delay"
         android:defaultValue="1"
         android:max="15"
-        android:dialogMessage="从启动截图程序到实际截取屏幕间的等待时间。\n默认：1，单位：秒"/>
+        android:dialogMessage="从启动截图到截取屏幕间的等待时间。\n默认：1 秒"/>
 </PreferenceScreen>

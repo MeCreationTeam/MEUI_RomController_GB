@@ -5,7 +5,6 @@ import android.preference.*;
 import android.util.*;
 import com.meui.prefs.MultiColorPanel.*;
 import android.widget.*;
-import android.provider.*;
 import java.util.*;
 
 /**
@@ -52,8 +51,9 @@ public class MultiColorPreference extends DialogPreference {
                            sp.putInt("spb_color_multi_value_"+(i+1),mColors.get(i).getColorValue());
                        }
                        // Commit.
+					   sp.putString("spb_color_string", result);
                        sp.commit();
-                       Settings.System.putString(getContext().getContentResolver(),"spb_color_string",result);
+                       //Settings.System.putString(getContext().getContentResolver(),"spb_color_string",result);
                    }
                })
                .setNegativeButton("取消",null)

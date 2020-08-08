@@ -14,14 +14,33 @@ import java.util.*;
  * @author zhaozihanzzh
  */
 
-public final class Screenshot extends BaseSettings {
-    private final String PATH_ERROR="截图路径修改失败。";
-    @Override
-    protected int getXmlId() {
-        return R.xml.screenshot;
-    }
+public final class Screenshot extends PreferenceActivity {
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		addPreferencesFromResource(R.xml.screenshot);
+        final EditTextPreference pathEditor=(EditTextPreference)findPreference("screenshot_path");
+		pathEditor.setOnPreferenceChangeListener(new EditTextPreference.OnPreferenceChangeListener(){
+			@Override
+			public boolean onPreferenceChange(Preference p1, Object p2){
+				String newPath = p2.toString();
+				File newPathFile=new File(newPath);
+				boolean canBeCreated = false;
+				if (newPathFile.exists()) {
+					canBeCreated = newPathFile.canWrite() && newPathFile.isDirectory();
+				} else {
+					canBeCreated = newPathFile.mkdirs();
+				}
+				newPathFile = null;
+				if (!canBeCreated) Toast.makeText(Screenshot.this, "无效路径："+p2, Toast.LENGTH_LONG).show();
+				return canBeCreated;
+			}
+		});
+		
+	}
 
-    @Override
+ContentResolver mResolver;String PATH_ERROR;
+    //@Override
     protected void save(String changedKey) {
 		SharedPreferences sp = getPreferenceManager().getSharedPreferences();
         final EditTextPreference pathEditor=(EditTextPreference)findPreference("ss_path");
@@ -49,13 +68,6 @@ public final class Screenshot extends BaseSettings {
 					pathEditor.setText(lastValue);
 					Settings.System.putString(mResolver, changedKey, lastValue);
 				}
-				break;
-			case "screenshot_format":
-				Settings.System.putString(mResolver, changedKey, sp.getString(changedKey, "png"));
-				break;
-			case "screenshot_quality":
-			case "screenshot_delay":
-				Settings.System.putInt(mResolver, changedKey, sp.getInt(changedKey, 1));
 				break;
 			case "share_screenshot":
 				Settings.System.putInt(mResolver, changedKey, sp.getBoolean(changedKey, false) ?1: 0);
